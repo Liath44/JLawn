@@ -5,6 +5,7 @@ public class Lawn
 	private int[][] lawn;
 	private ArrayList<Sprinkler> sprinklers;
 	private int time;
+	private boolean bounce;
 	
 	public int getPixel(int x, int y)
 		{
@@ -29,5 +30,13 @@ public class Lawn
 	public void addSprinkler(Sprinkler sprinkler)
 		{
 		sprinklers.add(sprinkler);
+		}
+		
+	public Lawn(int[][] lawn, ArrayList<Sprinkler> sprinklers, int time, boolean bounce)
+		{
+		this.lawn = lawn;
+		this.sprinklers = sprinklers;
+		this.time = time;
+		this.bounce = bounce;
 		}
 	}
