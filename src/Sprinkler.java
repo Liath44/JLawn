@@ -1,6 +1,7 @@
 public abstract class Sprinkler
 	{
-	//TODO: abstract variables???
+	//TODO: abstract variables - type/code???
+	//workaround: another class for type and code. Just pass the reference
 	protected final int x;
 	protected final int y;
 	//placement degree of sprinkler

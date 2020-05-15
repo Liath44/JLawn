@@ -1,16 +1,16 @@
 public class Sprinkler90 extends Sprinkler
 	{
-	private final static int type = 90;
-	private final static int code = 0;
+	private final static int TYPE = 90;
+	private final static int CODE = 0;
 	
 	public int getCode()
 		{
-		return code;
+		return CODE;
 		}
 		
 	public int getType()
 		{
-		return type;
+		return TYPE;
 		}
 
 	public int getRadius()

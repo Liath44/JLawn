@@ -32,10 +32,10 @@ public class Lawn
 		sprinklers.add(sprinkler);
 		}
 		
-	public Lawn(int[][] lawn, ArrayList<Sprinkler> sprinklers, int time, boolean bounce)
+	public Lawn(int[][] lawn, int time, boolean bounce)
 		{
 		this.lawn = lawn;
-		this.sprinklers = sprinklers;
+		sprinklers = new ArrayList<>();
 		this.time = time;
 		this.bounce = bounce;
 		}
