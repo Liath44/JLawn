@@ -6,7 +6,8 @@ public class LawnReader
 	{
 	private final static char GRASS = '*';
 	private final static char WALL = '#';
-	private final static int JUMP = 100;
+	//TODO: change JUMP to 100
+	private final static int JUMP = 2;
 	private final static int MAXWIDTH = 8000;
 	private final static int MAXLEN = 4000;
 	
@@ -127,8 +128,10 @@ public class LawnReader
 				throw new ImproperCharException((char)c);
 			c = filereader.read();
 			}
-		if(curlen != 0 || curlen != maxlen)
+		if(curlen != 0 && curlen != maxlen)
 			throw new InconsistentCharAmountException();
+		if(curlen == maxlen)
+			curwidth += JUMP;
 		outcome = adjustDepth(outcome, curwidth, curwidth);
 		return outcome;
 		}
@@ -141,8 +144,11 @@ public class LawnReader
 		int c = filereader.read();
 		if(c == -1)
 			throw new EmptyFileException();
+		if(c != GRASS && c != WALL)
+			throw new ImproperCharException((char)c);
 		outcome = readFirstRow(c, filereader, outcome);
 		outcome = readRest(filereader, outcome);
+		//TODO: what if exception is thrown
 		filereader.close();
 		return outcome;
 		}

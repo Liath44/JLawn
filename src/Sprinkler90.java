@@ -2,6 +2,11 @@ public class Sprinkler90 extends Sprinkler
 	{
 	private final static int TYPE = 90;
 	private final static int CODE = 0;
+
+	//TODO
+	public void putSprinkler(Lawn lawn)
+		{
+		}
 	
 	public int getCode()
 		{

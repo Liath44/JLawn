@@ -32,6 +32,16 @@ public class Lawn
 		sprinklers.add(sprinkler);
 		}
 		
+	public void printLawn()
+		{
+		for(int j = 0; j < getYSize(); j++)
+			{
+			for(int i = 0; i < getXSize(); i++)
+				System.out.print(getPixel(i, j));
+			System.out.print("\n");
+			}
+		}
+		
 	public Lawn(int[][] lawn, int time, boolean bounce)
 		{
 		this.lawn = lawn;
