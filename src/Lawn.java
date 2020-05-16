@@ -12,6 +12,11 @@ public class Lawn
 		return lawn[y][x];
 		}
 		
+	public int getPixelJump(int x, int y)
+		{
+		return lawn[y*LawnReader.getJump()][x*LawnReader.getJump()];
+		}
+		
 	public void markPixel(int x, int y)
 		{
 		lawn[y][x] = -lawn[y][x];

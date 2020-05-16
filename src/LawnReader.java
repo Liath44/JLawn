@@ -6,8 +6,7 @@ public class LawnReader
 	{
 	private final static char GRASS = '*';
 	private final static char WALL = '#';
-	//TODO: change JUMP to 100
-	private final static int JUMP = 2;
+	private final static int JUMP = 100;
 	private final static int MAXWIDTH = 8000;
 	private final static int MAXLEN = 4000;
 	
@@ -171,5 +170,10 @@ public class LawnReader
 	public int getMAXWIDTH()
 		{
 		return MAXWIDTH;
+		}
+		
+	public static int getJump()
+		{
+		return JUMP;
 		}
 	}
