@@ -34,14 +34,14 @@ public class LawnReader
 			fillRow(with, i, begcol, endcol, destination);
 		}
 	
-	private int[][] makeLonger(int[][] prevoutcome, int prevlen, int newlen)
+	private int[][] adjustLength(int[][] prevoutcome, int prevlen, int newlen)
 		{
 		int[][] outcome = new int[1][newlen];
 		copyRow(0, prevlen, prevoutcome, outcome);
 		return outcome;
 		}
 	
-	private int[][] makeDeeper(int[][] prevoutcome, int prevwidth, int newwidth)
+	private int[][] adjustDepth(int[][] prevoutcome, int prevwidth, int newwidth)
 		{
 		int[][] outcome = new int[newwidth][prevoutcome[0].length];
 		copyRec(prevoutcome[0].length, prevwidth, prevoutcome, outcome);
@@ -60,7 +60,7 @@ public class LawnReader
 			if(curlen == maxlen)
 				{
 				maxlen *= 2;
-				outcome = makeLonger(outcome, curlen, maxlen);
+				outcome = adjustLength(outcome, curlen, maxlen);
 				}
 			if(c == GRASS)
 				{
@@ -76,20 +76,65 @@ public class LawnReader
 				throw new ImproperCharException((char)c);
 			c = filereader.read();
 			}
+		outcome = adjustLength(outcome, curlen, curlen);
 		return outcome;
 		}
 	
-	private int[][] readRest(FileReader filereader, int[][] outcome)
+	private int[][] readRest(FileReader filereader, int[][] outcome) throws IOException, 
+	InconsistentCharAmountException, ImproperCharException, TooManyRowsException
 		{
 		int maxwidth = JUMP;
 		int curwidth = JUMP;
-		outcome = makeDeeper(outcome, 1, maxwidth);
-		for(int i = 1; i < curwidth; i++)
-			
+		int maxlen = outcome[0].length;
+		int curlen = 0;
+		outcome = adjustDepth(outcome, 1, maxwidth);
+		for(int i = 0; i < outcome[0].length; i += JUMP)
+			fillRec(outcome[0][i], 1, curwidth, i, i+JUMP, outcome);
+		int c = filereader.read();
+		while(c != -1)
+			{
+			if(curwidth == MAXWIDTH)
+				throw new TooManyRowsException(MAXWIDTH);
+			if(curwidth == maxwidth)
+				{
+				maxwidth *= 2;
+				outcome = adjustDepth(outcome, curwidth, maxwidth);
+				}
+			if(c == '\n')
+				{
+				if(curlen != maxlen)
+					throw new InconsistentCharAmountException();
+				else
+					{
+					curlen = 0;
+					curwidth += JUMP;
+					}
+				}
+			//too much char
+			else if(curlen == maxlen)
+				throw new InconsistentCharAmountException();
+			else if(c == GRASS)
+				{
+				fillRec(1, curwidth, curwidth+JUMP, curlen, curlen+JUMP, outcome);
+				curlen += JUMP;
+				}
+			else if(c == WALL)
+				{
+				fillRec(0, curwidth, curwidth+JUMP, curlen, curlen+JUMP, outcome);
+				curlen += JUMP;
+				}
+			else
+				throw new ImproperCharException((char)c);
+			c = filereader.read();
+			}
+		if(curlen != 0 || curlen != maxlen)
+			throw new InconsistentCharAmountException();
+		outcome = adjustDepth(outcome, curwidth, curwidth);
+		return outcome;
 		}
 		
 	private int[][] readFile(String path) throws IOException, EmptyFileException, ImproperCharException, 
-	TooManyColumnsException
+	TooManyColumnsException, InconsistentCharAmountException, TooManyRowsException
 		{
 		FileReader filereader = new FileReader(path);
 		int[][] outcome = new int[1][JUMP];
@@ -99,10 +144,11 @@ public class LawnReader
 		outcome = readFirstRow(c, filereader, outcome);
 		outcome = readRest(filereader, outcome);
 		filereader.close();
+		return outcome;
 		}
 		
 	public Lawn createLawn(String path, int time, boolean bounce) throws IOException, EmptyFileException, 
-	ImproperCharException, TooManyColumnsException
+	ImproperCharException, TooManyColumnsException, InconsistentCharAmountException, TooManyRowsException
 		{
 		return new Lawn(readFile(path), time, bounce);
 		}
