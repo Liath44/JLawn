@@ -35,6 +35,21 @@ public class Rectangle
 		return p2.getY();
 		}
 		
+	public Point getP1()
+		{
+		return p1;
+		}
+		
+	public Point getP2()
+		{
+		return p2;
+		}
+		
+	public boolean isInRectangle(int x, int y)
+		{
+		return (x >= p1.getX() && y >= p2.getY() && x <= p2.getX() && y <= p2.getY());
+		}
+		
 	public Rectangle()
 		{
 		}

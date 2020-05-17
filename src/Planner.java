@@ -45,6 +45,16 @@ public class Planner
 		return areas;
 		}
 	
+	private boolean isNotOnList(int x, int y, ArrayList<Rectangle> rectangles)
+		{
+		for(Rectangle rectangle: rectangles)
+			{
+			if(rectangle.isInRectangle(x, y))
+				return false;
+			}
+		return true;
+		}
+		
 	private int calcLenRight(Lawn lawn, int x, int y, int xsize)
 		{
 		int i = x + 1;
@@ -69,15 +79,43 @@ public class Planner
 		return (x + i >= xsize || lawn.getPixelJump(x + i, y) == 0);
 		}	
 		
+	private void checkForUpDown(Lawn lawn, int x, int j, int xsize, int ysize, int len, ArrayList<Rectangle> rectangles)
+		{
+		int i = x + len - 1;
+		while(i >= x)
+			{
+			if(lawn.getPixelJump(i, j) != 0 && (i == 0 || lawn.getPixelJump(i - 1, j) == 0))
+				{
+				if(isNotOnList(i * LawnReader.getJump(), j * LawnReader.getJump(), rectangles))
+					upDownRectangle(lawn, i, j, xsize, ysize, rectangles);
+				}
+			--i;
+			}
+		if(i >= 0 && lawn.getPixelJump(i, j) != 0 && lawn.getPixelJump(i + 1, j) != 0)
+			{
+			while(i >= 0 && lawn.getPixelJump(i, j) != 0)
+				--i;
+			++i;
+			if(isNotOnList(i * LawnReader.getJump(), j * LawnReader.getJump(), rectangles))
+				upDownRectangle(lawn, i, j, xsize, ysize, rectangles);
+			}
+		}	
+		
 	private void upDownRectangle(Lawn lawn, int x, int y, int xsize, int ysize, ArrayList<Rectangle> rectangles)
 		{
 		Rectangle rectangle = new Rectangle();
+		rectangles.add(rectangle);
 		rectangle.setP1(new Point(x*LawnReader.getJump(), y*LawnReader.getJump()));
 		int len = calcLenRight(lawn, x, y, xsize);
 		int i = y + 1;
 		while(rowIsProper(lawn, x, i, len, xsize, ysize))
 			i++;
-		
+		rectangle.setP2(new Point(LawnReader.getJump()*(x+len)-1, LawnReader.getJump()*i-1));
+		if(i < ysize)
+			{
+			checkForUpDown(lawn, x, i, xsize, ysize, len, rectangles);
+			checkForDownUp(lawn, x, x + len - 1, i, xsize, ysize, rectangles);
+			}
 		}
 		
 	private ArrayList<Rectangle> areaRectangulization(Lawn lawn, Point area)
