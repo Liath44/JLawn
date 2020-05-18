@@ -1,11 +1,9 @@
-import AuxiliaryClasses.*;
+import AuxiliaryClasses.Rectangle;
+import AuxiliaryClasses.Point;
 import java.util.ArrayList;
 
 public class Planner
 	{
-	//TODO: Iterator
-	//TODO: Am I sure Iterator is a good idea
-		
 	private void signAreaJump(Lawn lawn, int xsize, int ysize, int x, int y)
 		{
 		lawn.markPixel(x * LawnReader.getJump(), y * LawnReader.getJump());
@@ -28,7 +26,7 @@ public class Planner
 			}
 		}
 		
-	private ArrayList<Point> findAreas(Lawn lawn)
+	public ArrayList<Point> findAreas(Lawn lawn)
 		{
 		int xsize = lawn.getXSize()/LawnReader.getJump();
 		int ysize = lawn.getYSize()/LawnReader.getJump();
@@ -266,7 +264,7 @@ public class Planner
 			}
 		}
 		
-	private ArrayList<Rectangle> areaRectangulization(Lawn lawn, Point area)
+	public ArrayList<Rectangle> areaRectangulization(Lawn lawn, Point area)
 		{
 		ArrayList<Rectangle> rectangles = new ArrayList<>();
 		upDownRectangle(lawn, area.getX(), area.getY(), lawn.getXSize()/LawnReader.getJump(), 

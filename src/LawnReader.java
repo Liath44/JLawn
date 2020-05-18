@@ -5,7 +5,6 @@ import FileExceptions.*;
 public class LawnReader
 	{
 	//TODO: what if exception is thrown - filereader.close()
-	//TODO: Check proper MAXWIDTH and MAXLEN behaviour	
 		
 	private final static char GRASS = '*';
 	private final static char WALL = '#';
@@ -59,7 +58,7 @@ public class LawnReader
 		while(c != '\n' && c != -1)
 			{
 			if(curlen == MAXLEN)
-				throw new TooManyColumnsException(MAXLEN);
+				throw new TooManyColumnsException(MAXLEN/JUMP);
 			if(curlen == maxlen)
 				{
 				maxlen *= 2;
@@ -97,7 +96,7 @@ public class LawnReader
 		while(c != -1)
 			{
 			if(curwidth == MAXWIDTH)
-				throw new TooManyRowsException(MAXWIDTH);
+				throw new TooManyRowsException(MAXWIDTH/JUMP);
 			if(curwidth == maxwidth)
 				{
 				maxwidth *= 2;

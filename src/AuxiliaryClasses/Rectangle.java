@@ -4,6 +4,16 @@ public class Rectangle
 	{
 	private Point p1;
 	private Point p2;
+
+	public boolean isInRectangle(int x, int y)
+		{
+		return (x >= p1.getX() && y >= p2.getY() && x <= p2.getX() && y <= p2.getY());
+		}
+		
+	public String toString()
+		{
+		return "Rectangle:\n" + p1.toString() + "\n" + p2.toString();
+		}
 	
 	public void setP1(Point p1)
 		{
@@ -43,11 +53,6 @@ public class Rectangle
 	public Point getP2()
 		{
 		return p2;
-		}
-		
-	public boolean isInRectangle(int x, int y)
-		{
-		return (x >= p1.getX() && y >= p2.getY() && x <= p2.getX() && y <= p2.getY());
 		}
 		
 	public Rectangle()
