@@ -3,6 +3,8 @@ import java.util.ArrayList;
 
 public class Planner
 	{
+	//TODO: Iterator
+		
 	private void signAreaJump(Lawn lawn, int xsize, int ysize, int x, int y)
 		{
 		lawn.markPixel(x * LawnReader.getJump(), y * LawnReader.getJump());
@@ -63,6 +65,14 @@ public class Planner
 		return i - x;
 		}	
 		
+	private int calcLenLeft(Lawn lawn, int x, int y)
+		{
+		int i = x - 1;
+		while(i >= 0 && lawn.getPixelJump(i, y) != 0)
+			--i;
+		return x - i;
+		}
+		
 	private boolean rowIsProper(Lawn lawn, int x, int y, int len, int xsize, int ysize)
 		{
 		if(y == ysize || y == -1)
@@ -101,6 +111,126 @@ public class Planner
 			}
 		}	
 		
+	private void checkForUpDown2(Lawn lawn, int x1, int x2, int y, int xsize, int ysize, ArrayList<Rectangle> rectangles)
+		{
+		int i = x1 - 1;
+		if(lawn.getPixelJump(x1, y) != 0)
+			{
+			while(i >= 0 && lawn.getPixelJump(i, y) != 0)
+				{
+				if(lawn.getPixelJump(i, y+1) != 0)
+					{
+					int newrec = i - 1;
+					while(newrec >= 0 && lawn.getPixelJump(newrec, y+1) != 0)
+						--newrec;
+					++newrec;
+					if(isNotOnList(newrec*LawnReader.getJump(), LawnReader.getJump()*(y+1), rectangles))
+						upDownRectangle(lawn, newrec, y+1, xsize, ysize, rectangles);
+					while(i >= newrec)
+						{
+						if(lawn.getPixelJump(i, y) == 0)
+							i = -4;
+						--i;
+						}
+					++i;
+					}
+				--i;
+				}
+			}
+		int j = x2 + 1;
+		if(lawn.getPixelJump(x2, y) != 0)
+			{
+			while(j < xsize && lawn.getPixelJump(j, y) != 0)
+				{
+				if(lawn.getPixelJump(j, y+1) != 0)
+					{
+					if(isNotOnList(j*LawnReader.getJump(), (y+1)*LawnReader.getJump(), rectangles))
+						upDownRectangle(lawn, j, y+1, xsize, ysize, rectangles);
+					++j;
+					while(j < xsize && lawn.getPixelJump(j, y+1) != 0)
+						{
+						if(lawn.getPixelJump(j, y) == 0)
+							j = xsize + 4;
+						++j;
+						}
+					--j;
+					}
+				++j;
+				}
+			}
+		}
+		
+	private void checkForDownUp(Lawn lawn, int x1, int x2, int y, int xsize, int ysize, ArrayList<Rectangle> rectangles)
+		{
+		int i = x1 - 1;
+		if(lawn.getPixelJump(x1, y) != 0)
+			{
+			while(i >= 0 && lawn.getPixelJump(i, y) != 0)
+				{
+				if(lawn.getPixelJump(i, y - 1) != 0)
+					{
+					if(isNotOnList(LawnReader.getJump()*(i+1)-1, LawnReader.getJump()*y-1, rectangles))
+						downUpRectangle(lawn, i, y-1, xsize, ysize, rectangles);
+					--i;
+					while(i >= 0 && lawn.getPixelJump(i, y-1) != 0)
+						{
+						if(lawn.getPixelJump(i, y) == 0)
+							i = -4;
+						--i;
+						}
+					++i;
+					}
+				--i;
+				}
+			}
+		int j = x2 + 1;
+		if(lawn.getPixelJump(x2, y) != 0)
+			{
+			while(j < xsize && lawn.getPixelJump(j, y) != 0)
+				{
+				if(lawn.getPixelJump(j, y-1) != 0)
+					{
+					int newrec = j + 1;
+					while(newrec < xsize && lawn.getPixelJump(newrec, y-1) != 0)
+						++newrec;
+					--newrec;
+					if(isNotOnList(LawnReader.getJump()*(newrec+1)-1,y*LawnReader.getJump()-1, rectangles))
+						downUpRectangle(lawn, newrec, y-1, xsize, ysize, rectangles);
+					while(j <= newrec)
+						{
+						if(lawn.getPixelJump(j, y) == 0)
+							j = xsize + 4;
+						++j;
+						}
+					--j;
+					}
+				++j;
+				}
+			}
+		}
+		
+	private void checkForDownUp2(Lawn lawn, int x, int j, int xsize, int ysize, int len, ArrayList<Rectangle> rectangles)
+		{
+		int i1 = x - len + 1;
+		while(i1 <= x)
+			{
+			if(lawn.getPixelJump(i1, j) != 0 && (i1 == xsize - 1 || lawn.getPixelJump(i1+1, j) == 0))
+				{
+				if(isNotOnList(LawnReader.getJump()*(i1+1)-1, LawnReader.getJump()*(j+1)-1, rectangles))
+					downUpRectangle(lawn, i1, j, xsize, ysize, rectangles);
+				}
+			++i1;
+			}
+		if(i1 < xsize && lawn.getPixelJump(i1, j) != 0 && lawn.getPixelJump(i1-1, j) != 0)
+			{
+			while(i1 < xsize && lawn.getPixelJump(i1, j) != 0)
+				++i1;
+			--i1;
+			if(isNotOnList(LawnReader.getJump()*(i1+1)-1, LawnReader.getJump()*(j+1)-1, rectangles))
+				downUpRectangle(lawn, i1, j, xsize, ysize, rectangles);
+			}
+		}
+		
 	private void upDownRectangle(Lawn lawn, int x, int y, int xsize, int ysize, ArrayList<Rectangle> rectangles)
 		{
 		Rectangle rectangle = new Rectangle();
@@ -115,6 +245,23 @@ public class Planner
 			{
 			checkForUpDown(lawn, x, i, xsize, ysize, len, rectangles);
 			checkForDownUp(lawn, x, x + len - 1, i, xsize, ysize, rectangles);
+			}
+		}
+		
+	private void downUpRectangle(Lawn lawn, int x, int y, int xsize, int ysize, ArrayList<Rectangle> rectangles)
+		{
+		Rectangle rectangle = new Rectangle();
+		rectangles.add(rectangle);
+		rectangle.setP2(new Point(LawnReader.getJump()*(x+1)-1, LawnReader.getJump()*(y+1)-1));
+		int len = calcLenLeft(lawn, x, y);
+		int i = y - 1;
+		while(rowIsProper(lawn, x-len+1, i, len, xsize, ysize))
+			--i;
+		rectangle.setP1(new Point((x-len+1)*LawnReader.getJump(), (i+1)*LawnReader.getJump()));
+		if(i >= 0)
+			{
+			checkForUpDown2(lawn, x-len+1, x, i, xsize, ysize, rectangles);
+			checkForDownUp2(lawn, x, i, xsize, ysize, len, rectangles);
 			}
 		}
 		

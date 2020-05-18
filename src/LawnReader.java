@@ -4,6 +4,9 @@ import FileExceptions.*;
 
 public class LawnReader
 	{
+	//TODO: what if exception is thrown - filereader.close()
+	//TODO: Check proper MAXWIDTH and MAXLEN behaviour	
+		
 	private final static char GRASS = '*';
 	private final static char WALL = '#';
 	private final static int JUMP = 100;
