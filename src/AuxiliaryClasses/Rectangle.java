@@ -7,7 +7,7 @@ public class Rectangle
 
 	public boolean isInRectangle(int x, int y)
 		{
-		return (x >= p1.getX() && y >= p2.getY() && x <= p2.getX() && y <= p2.getY());
+		return (x >= p1.getX() && y >= p1.getY() && x <= p2.getX() && y <= p2.getY());
 		}
 		
 	public String toString()
