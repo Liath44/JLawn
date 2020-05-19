@@ -13,6 +13,11 @@ public abstract class Sprinkler
 		Sprinkler.radius = radius;
 		}
 		
+	public int getDiameter()
+		{
+		return getRadius() * 2 + 1;
+		}
+		
 	public static int codeToType(int code)
 		{
 		return code * 90 + 90;
