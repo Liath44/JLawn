@@ -33,5 +33,6 @@ public abstract class Sprinkler
 	public abstract void putSprinkler(Lawn lawn);
 	public abstract int getCode();
 	public abstract int getType();
+	public abstract int getEffParam();
 	public abstract int getRadius();
 	}

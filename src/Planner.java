@@ -4,6 +4,34 @@ import java.util.ArrayList;
 
 public class Planner
 	{
+	public ArrayList<Rectangle> areaRectangulization(Lawn lawn, Point area)
+		{
+		ArrayList<Rectangle> rectangles = new ArrayList<>();
+		upDownRectangle(lawn, area.getX(), area.getY(), lawn.getXSize()/LawnReader.getJump(),
+				lawn.getYSize()/LawnReader.getJump(), rectangles);
+		return rectangles;
+		}
+
+	public ArrayList<Point> findAreas(Lawn lawn)
+		{
+		int xsize = lawn.getXSize()/LawnReader.getJump();
+		int ysize = lawn.getYSize()/LawnReader.getJump();
+		ArrayList<Point> areas = new ArrayList<>();
+		for(int j = 0; j < ysize; j++)
+			{
+			for(int i = 0; i < xsize; i++)
+				{
+				if(lawn.getPixelJump(i, j) == 1)
+					{
+					areas.add(new Point(i, j));
+					signAreaJump(lawn, xsize, ysize, i, j);
+					}
+				}
+			}
+		resetSignsJump(lawn, xsize, ysize);
+		return areas;
+		}
+		
 	private void signAreaJump(Lawn lawn, int xsize, int ysize, int x, int y)
 		{
 		lawn.markPixel(x * LawnReader.getJump(), y * LawnReader.getJump());
@@ -26,26 +54,6 @@ public class Planner
 			}
 		}
 		
-	public ArrayList<Point> findAreas(Lawn lawn)
-		{
-		int xsize = lawn.getXSize()/LawnReader.getJump();
-		int ysize = lawn.getYSize()/LawnReader.getJump();
-		ArrayList<Point> areas = new ArrayList<>();
-		for(int j = 0; j < ysize; j++)
-			{
-			for(int i = 0; i < xsize; i++)
-				{
-				if(lawn.getPixelJump(i, j) == 1)
-					{
-					areas.add(new Point(i, j));
-					signAreaJump(lawn, xsize, ysize, i, j);
-					}
-				}
-			}
-		resetSignsJump(lawn, xsize, ysize);
-		return areas;
-		}
-	
 	private boolean isNotOnList(int x, int y, ArrayList<Rectangle> rectangles)
 		{
 		for(Rectangle rectangle: rectangles)
@@ -136,6 +144,7 @@ public class Planner
 				--i;
 				}
 			}
+		//TODO: check BUGREPPORT
 		int j = x2 + 1;
 		if(lawn.getPixelJump(x2, y) != 0)
 			{
@@ -262,13 +271,5 @@ public class Planner
 			checkForUpDown2(lawn, x-len+1, x, i, xsize, ysize, rectangles);
 			checkForDownUp2(lawn, x, i, xsize, ysize, len, rectangles);
 			}
-		}
-		
-	public ArrayList<Rectangle> areaRectangulization(Lawn lawn, Point area)
-		{
-		ArrayList<Rectangle> rectangles = new ArrayList<>();
-		upDownRectangle(lawn, area.getX(), area.getY(), lawn.getXSize()/LawnReader.getJump(), 
-		lawn.getYSize()/LawnReader.getJump(), rectangles);
-		return rectangles;
 		}
 	}
