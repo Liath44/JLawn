@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Gardener
 	{
+	//TODO: I kind of want to redo all of this...
 	private final ArrayList<Sprinkler> catalogue;
 		
 	public void placeSprinklers(Lawn lawn, Planner planner)
@@ -37,9 +38,77 @@ public class Gardener
 		if(xlen <= note.getCirXLen())
 			placeOnYAxis(lawn, rectangle, note, catalogue.get(Sprinkler.typeToCode(note.getType())).getRadius());
 		else if(ylen <= note.getCirYLen())
-			
+			placeOnXAxis(lawn, rectangle, note, catalogue.get(Sprinkler.typeToCode(note.getType())).getRadius());
 		else
 			
+		}
+		
+	private void placeOnXAxis(Lawn lawn, Rectangle rectangle, GardenersNote note, int radius)
+		{
+		int y;
+		int jump;
+		int shift = 1;
+		int stopparam = rectangle.getP2X();
+		int i = rectangle.getP1X();
+		if(note.getType() == 90 || (note.getType() == 180 && note.getDeg() == 0))
+			y = rectangle.getP2Y();
+		else
+			y = rectangle.getMiddleWidth();
+		if(note.getType() == 270 || note.getType() == 90 || (note.getType() == 180 && note.getDeg() == 90))
+			jump = (radius + 1)/2;
+		else
+			jump = radius + 1;
+		for(; i <= stopparam; i += jump)
+			{
+			switch(note.getType())
+				{
+				case 360:
+					for(int j = 0; j < 3; j++)
+						{
+						Sprinkler360 sprinkler360 = new Sprinkler360(i, y, 0);
+						sprinkler360.putSprinkler(lawn);
+						lawn.addSprinkler(sprinkler360);
+						}
+				break;
+				case 270:
+					Sprinkler270 sprinkler270 = new Sprinkler270(i, y, 0);
+					if(note.getDeg() == 0)
+						note.setDeg(180);
+					else
+						{
+						note.setDeg(0);
+						i += jump;
+						}
+					y += shift;
+					shift *= -1;
+				break;
+				case 180:
+					Sprinkler180 sprinkler180 = new Sprinkler180(i, y, note.getDeg());
+					sprinkler180.putSprinkler(lawn);
+					lawn.addSprinkler(sprinkler180);	
+				break;
+				default:
+					Sprinkler90 sprinkler90 = new Sprinkler90(i, y, note.getDeg());
+					sprinkler90.putSprinkler(lawn);
+					lawn.addSprinkler(sprinkler90);
+				}
+			}
+		if(note.getDeg() == 180)
+			{
+			i -= jump/2;
+			for(int k = 0; k < 3; k++)
+				{
+				Sprinkler360 bonussprinkler = new Sprinkler360(i+radius/2+1, y+radius/2, 0);
+				bonussprinkler.putSprinkler(lawn);
+				lawn.addSprinkler(bonussprinkler);
+				}
+			}
+		else if(note.getType() == 90)
+			{
+			Sprinkler90 bonussprinkler = new Sprinkler90(rectangle.getP2X(), rectangle.getP2Y(), 90);
+			bonussprinkler.putSprinkler(lawn);
+			lawn.addSprinkler(bonussprinkler);
+			}
 		}
 		
 	private void placeOnYAxis(Lawn lawn, Rectangle rectangle, GardenersNote note, int radius)
@@ -78,7 +147,7 @@ public class Gardener
 					else
 						{
 						note.setDeg(0);
-						i += radius;
+						i += jump;
 						}
 					x += shift;
 					shift *= -1;
@@ -96,7 +165,7 @@ public class Gardener
 			}
 		if(note.getDeg() == 180)
 			{
-			i -= jump;
+			i -= jump/2;
 			if(lawn.getPixel(x+radius/2, i+radius/2) != 0)
 				{
 				for(int k = 0; k < 3; k++)
