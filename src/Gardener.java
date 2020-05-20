@@ -6,6 +6,10 @@ import java.util.ArrayList;
 public class Gardener
 	{
 	//TODO: I kind of want to redo all of this...
+		
+	//TODO: idea for a redo. Setup another "rectangle" with method fill rectangle
+	//TODO: egz. rectangle that is filled with 2 * 180spr. xlen = radius+1 ylen = 2*radius+1
+		
 	private final ArrayList<Sprinkler> catalogue;
 		
 	public void placeSprinklers(Lawn lawn, Planner planner)
@@ -78,7 +82,7 @@ public class Gardener
 						}
 				break;
 				case 270:
-					Sprinkler270 sprinkler270 = new Sprinkler270(1, y, note.getDeg());
+					Sprinkler270 sprinkler270 = new Sprinkler270(i, y, note.getDeg());
 					sprinkler270.putSprinkler(lawn);
 					lawn.addSprinkler(sprinkler270);
 					if(note.getDeg() == 0)
@@ -111,6 +115,7 @@ public class Gardener
 				bonussprinkler.putSprinkler(lawn);
 				lawn.addSprinkler(bonussprinkler);
 				}
+			note.setDeg(0);
 			}
 		else if(note.getDeg() == 90)
 			{

@@ -17,6 +17,11 @@ public class Lawn
 		return lawn[y*LawnReader.getJump()][x*LawnReader.getJump()];
 		}
 		
+	public void waterPixel(int x, int y, int nospins)
+		{
+		lawn[x][y] += time*nospins;
+		}
+		
 	public void markPixel(int x, int y)
 		{
 		lawn[y][x] = -lawn[y][x];
