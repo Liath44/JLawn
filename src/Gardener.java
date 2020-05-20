@@ -40,7 +40,12 @@ public class Gardener
 		else if(ylen <= note.getCirYLen())
 			placeOnXAxis(lawn, rectangle, note, catalogue.get(Sprinkler.typeToCode(note.getType())).getRadius());
 		else
-			
+			placeInRectangle(lawn, rectangle, note, catalogue.get(Sprinkler.typeToCode(note.getType())).getRadius());
+		}
+		
+	private void placeInRectangle(Lawn lawn, Rectangle rectangle, GardenersNote note, int radius)
+		{
+		//TODO:
 		}
 		
 	private void placeOnXAxis(Lawn lawn, Rectangle rectangle, GardenersNote note, int radius)
@@ -105,7 +110,13 @@ public class Gardener
 			}
 		else if(note.getType() == 90)
 			{
-			Sprinkler90 bonussprinkler = new Sprinkler90(rectangle.getP2X(), rectangle.getP2Y(), 90);
+			Sprinkler90 bonussprinkler = new Sprinkler90(rectangle.getP2X(), y, 90);
+			bonussprinkler.putSprinkler(lawn);
+			lawn.addSprinkler(bonussprinkler);
+			}
+		else if(note.getType() == 180 && note.getDeg() == 90)
+			{
+			Sprinkler180 bonussprinkler = new Sprinkler180(rectangle.getP2X(), y, 90);
 			bonussprinkler.putSprinkler(lawn);
 			lawn.addSprinkler(bonussprinkler);
 			}
