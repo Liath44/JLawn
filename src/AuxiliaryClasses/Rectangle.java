@@ -52,7 +52,7 @@ public class Rectangle
 		
 	public int getP1Y()
 		{
-		return p2.getY();
+		return p1.getY();
 		}
 		
 	public int getP2X()

@@ -9,7 +9,7 @@ public class LawnReader
 	private final static char GRASS = '*';
 	private final static char WALL = '#';
 	//TODO: set JUMP to 100
-	private final static int JUMP = 2;
+	private final static int JUMP = 1;
 	private final static int MAXWIDTH = 8000;
 	private final static int MAXLEN = 4000;
 	

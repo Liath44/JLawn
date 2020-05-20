@@ -8,7 +8,7 @@ public abstract class Sprinkler
 	protected final int deg;
 	protected static int radius;
 	
-	public void setRadius(int radius)
+	public static void setRadius(int radius)
 		{
 		Sprinkler.radius = radius;
 		}

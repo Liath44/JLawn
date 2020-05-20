@@ -7,6 +7,7 @@ public class Sprinkler360 extends Sprinkler
     //TODO
     public void putSprinkler(Lawn lawn)
         {
+        System.out.println("Sprinkler 360: x = " + x + " y = " + y + " deg = " + deg);
         }
 
     public int getCode()
