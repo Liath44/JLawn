@@ -45,7 +45,85 @@ public class Gardener
 		
 	private void placeInRectangle(Lawn lawn, Rectangle rectangle, GardenersNote note, int radius)
 		{
-		//TODO:
+		int jump;
+		int stopparam = rectangle.getP2Y();
+		if(note.getType() == 90 || (note.getType() == 180 && note.getDeg() == 0))
+			jump = (radius + 1)/2;
+		else
+			jump = radius + 1;
+		for(int i = rectangle.getP1Y(); i <= stopparam; i += jump)
+			placeSprRow(i, lawn, rectangle, note, radius);
+		}
+		
+	private void placeSprRow(int y, Lawn lawn, Rectangle rectangle, GardenersNote note, int radius)
+		{
+		int jump;
+		int stopparam = rectangle.getP2X();
+		int shift = 1;
+		int i = rectangle.getP1X();
+		if(note.getType() == 270 || note.getType() == 90 || (note.getType() == 180 && note.getDeg() == 90))
+			jump = (radius + 1)/2;
+		else
+			jump = radius + 1;
+		for(; i <= stopparam; i += jump)
+			{
+			switch(note.getType())
+				{
+				case 360:
+					for(int j = 0; j < 3; j++)
+						{
+						Sprinkler360 sprinkler360 = new Sprinkler360(i, y, 0);
+						sprinkler360.putSprinkler(lawn);
+						lawn.addSprinkler(sprinkler360);
+						}
+				break;
+				case 270:
+					Sprinkler270 sprinkler270 = new Sprinkler270(1, y, note.getDeg());
+					sprinkler270.putSprinkler(lawn);
+					lawn.addSprinkler(sprinkler270);
+					if(note.getDeg() == 0)
+						note.setDeg(180);
+					else
+						{
+						note.setDeg(0);
+						i += radius;
+						}
+					y += shift;
+					shift *= -1;
+				break;
+				case 180:
+					Sprinkler180 sprinkler180 = new Sprinkler180(i, y, note.getDeg());
+					sprinkler180.putSprinkler(lawn);
+					lawn.addSprinkler(sprinkler180);
+				break;
+				default:
+					Sprinkler90 sprinkler90 = new Sprinkler90(i, y, note.getDeg());
+					sprinkler90.putSprinkler(lawn);
+					lawn.addSprinkler(sprinkler90);
+				}
+			}
+		if(note.getDeg() == 180)
+			{
+			i -= jump;
+			for(int k = 0; k < 3; k++)
+				{
+				Sprinkler360 bonussprinkler = new Sprinkler360(i+radius/2+1, y+radius/2, 0);
+				bonussprinkler.putSprinkler(lawn);
+				lawn.addSprinkler(bonussprinkler);
+				}
+			}
+		else if(note.getDeg() == 90)
+			{
+			Sprinkler90 bonussprinkler = new Sprinkler90(rectangle.getP2X(), y, 90);
+			bonussprinkler.putSprinkler(lawn);
+			lawn.addSprinkler(bonussprinkler);
+			}
+		else if(note.getType() == 180 && note.getDeg() == 90)
+			{
+			Sprinkler180 bonussprinkler = new Sprinkler180(rectangle.getP2X(), y, 90);
+			bonussprinkler.putSprinkler(lawn);
+			lawn.addSprinkler(bonussprinkler);
+			}
 		}
 		
 	private void placeOnXAxis(Lawn lawn, Rectangle rectangle, GardenersNote note, int radius)
@@ -77,6 +155,8 @@ public class Gardener
 				break;
 				case 270:
 					Sprinkler270 sprinkler270 = new Sprinkler270(i, y, 0);
+					sprinkler270.putSprinkler(lawn);
+					lawn.addSprinkler(sprinkler270);
 					if(note.getDeg() == 0)
 						note.setDeg(180);
 					else
@@ -100,7 +180,7 @@ public class Gardener
 			}
 		if(note.getDeg() == 180)
 			{
-			i -= jump/2;
+			i -= jump;
 			for(int k = 0; k < 3; k++)
 				{
 				Sprinkler360 bonussprinkler = new Sprinkler360(i+radius/2+1, y+radius/2, 0);
@@ -176,7 +256,7 @@ public class Gardener
 			}
 		if(note.getDeg() == 180)
 			{
-			i -= jump/2;
+			i -= jump;
 			if(lawn.getPixel(x+radius/2, i+radius/2) != 0)
 				{
 				for(int k = 0; k < 3; k++)
