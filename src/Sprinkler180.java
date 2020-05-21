@@ -3,11 +3,42 @@ public class Sprinkler180 extends Sprinkler
     private final static int TYPE = 180;
     private final static int CODE = 1;
     private final static int EFFPARAM = 3;
-
-    //TODO
+    
     public void putSprinkler(Lawn lawn)
         { 
-        System.out.println("Sprinkler 180: x = " + x + " y = " + y + " deg = " + deg);
+        switch(deg)
+            {   
+            case(0):
+                putPlusUp(lawn);
+                putPlusRight(lawn);
+                putPlusLeft(lawn);
+                quadrant1(lawn);
+                quadrant2(lawn);
+            break;
+            case(90):
+                putPlusUp(lawn);
+                putPlusLeft(lawn);
+                putPlusDown(lawn);
+                quadrant2(lawn);
+                quadrant3(lawn);
+            break;
+            case(180):
+                putPlusLeft(lawn);
+                putPlusDown(lawn);
+                putPlusRight(lawn);
+                quadrant3(lawn);
+                quadrant4(lawn);
+            break;
+            case(270):
+                putPlusUp(lawn);
+                putPlusRight(lawn);
+                putPlusDown(lawn);
+                quadrant1(lawn);
+                quadrant4(lawn);
+            break;
+            default:
+                System.out.println("DEBUG - ERROR");
+            }
         }
 
     public int getCode()

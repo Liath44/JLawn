@@ -119,7 +119,7 @@ public abstract class Sprinkler
 			}
 		}
 		
-	protected void quadrant1DownUp(Lawn lawn)
+	private void quadrant1DownUp(Lawn lawn)
 		{
 		int i = x + 1;
 		while(i <= x + getRadius() && i < lawn.getXSize() && lawn.getPixel(i, y) != 0)
@@ -145,7 +145,7 @@ public abstract class Sprinkler
 			}
 		}
 		
-	void quadrant1LeftRight(Lawn lawn)
+	private void quadrant1LeftRight(Lawn lawn)
 		{
 		int j = y - 1;
 		while(j >= y - getRadius() && j >= 0 && lawn.getPixel(x, j) != 0)
@@ -171,7 +171,7 @@ public abstract class Sprinkler
 			}
 		}
 		
-	protected void quadrant2DownUp(Lawn lawn)
+	private void quadrant2DownUp(Lawn lawn)
 		{
 		int i = x - 1;
 		while(i >= x - getRadius() && i >= 0 && lawn.getPixel(i, y) != 0)
@@ -197,7 +197,7 @@ public abstract class Sprinkler
 			}
 		}
 		
-	protected void quadrant2RightLeft(Lawn lawn)
+	private void quadrant2RightLeft(Lawn lawn)
 		{
 		int j = y - 1;
 		while(j >= y - getRadius() && j >= 0 && lawn.getPixel(x, j) != 0)
@@ -223,9 +223,132 @@ public abstract class Sprinkler
 			}
 		}
 		
-	protected void quadrant3UpDown(Lawn lawn)
+	private void quadrant3UpDown(Lawn lawn)
 		{
-		//TODO:
+		int i = x - 1;
+		while( i >= x - getRadius() && i >= 0 && lawn.getPixel(i, y) != 0)
+			{
+			int j = y + 1;
+			int yi = j;
+			int direction = 1;
+			if(y == lawn.getYSize() - 1 || lawn.getPixel(i, y + 1) == 0)
+				{
+				yi = y;
+				direction = -1;
+				}
+			while((x-i)*(x-i)+(y-j)*(y-j) <= getRadius()*getRadius())
+				{
+				lawn.waterPixel(i, yi, getEffParam());
+				if(yi + direction == -1 || yi + direction == lawn.getYSize() || lawn.getPixel(i, yi + direction) == 0)
+					direction *= -1;
+				else
+					yi += direction;
+				++j;
+				}
+			--i;
+			}
+		}
+		
+	private void quadrant3RightLeft(Lawn lawn)
+		{
+		int j = y + 1;
+		while(j <= y + getRadius() && j < lawn.getYSize() && lawn.getPixel(x, j) != 0)
+			{
+			int i = x - 1;
+			int xi = i;
+			int direction = -1;
+			if(x == 0 || lawn.getPixel(x - 1, j) == 0)
+				{
+				xi = x;
+				direction = 1;
+				}
+			while((x-i)*(x-i)+(y-j)*(y-j) <= getRadius() * getRadius())
+				{
+				lawn.waterPixel(xi, j, getEffParam());
+				if(xi + direction == -1 || xi + direction == lawn.getXSize() || lawn.getPixel(xi + direction, j) == 0)
+					direction *= -1;
+				else
+					xi += direction;
+				--i;
+				}
+			++j;
+			}
+		}
+		
+	private void quadrant4UpDown(Lawn lawn)
+		{
+		int i = x + 1;
+		while(i <= x + getRadius() && i < lawn.getXSize() && lawn.getPixel(i, y) != 0)
+			{
+			int j = y + 1;
+			int yi = j;
+			int direction = 1;
+			if(y == lawn.getYSize() - 1 || lawn.getPixel(i, y + 1) == 0)
+				{
+				yi = y;
+				direction = -1;
+				}
+			while((x-i)*(x-i)+(y-j)*(y-j) <= getRadius() * getRadius())
+				{
+				lawn.waterPixel(i, yi, getEffParam());
+				if(yi + direction == -1 || yi + direction == lawn.getYSize() || lawn.getPixel(i, yi + direction) == 0)
+					direction *= -1;
+				else
+					yi += direction;
+				++j;
+				}
+			++i;
+			}
+		}
+		
+	private void quadrant4LeftRight(Lawn lawn)
+		{
+		int j = y + 1;
+		while(j <= y + getRadius() && j < lawn.getYSize() && lawn.getPixel(x, j) != 0)
+			{
+			int i = x + 1;
+			int xi = i;
+			int direction = 1;
+			if(x == lawn.getXSize() - 1 || lawn.getPixel(x + 1, j) == 0)
+				{
+				xi = x;
+				direction = -1;
+				}
+			while((x-i)*(x-i)+(y-j)*(y-j) <= getRadius() * getRadius())
+				{
+				lawn.waterPixel(xi, j, getEffParam());
+				if(xi + direction == -1 || xi + direction == lawn.getXSize() || lawn.getPixel(xi + direction, j) == 0)
+					direction *= -1;
+				else
+					xi += direction;
+				++i;
+				}
+			++j;
+			}
+		}	
+		
+	protected void quadrant1(Lawn lawn)	
+		{
+		quadrant1DownUp(lawn);
+		quadrant1LeftRight(lawn);
+		}
+		
+	protected void quadrant2(Lawn lawn)
+		{
+		quadrant2RightLeft(lawn);
+		quadrant2DownUp(lawn);
+		}
+		
+	protected void quadrant3(Lawn lawn)
+		{
+		quadrant3RightLeft(lawn);
+		quadrant3UpDown(lawn);
+		}
+		
+	protected void quadrant4(Lawn lawn)
+		{
+		quadrant4LeftRight(lawn);
+		quadrant4UpDown(lawn);
 		}
 		
 	public abstract void putSprinkler(Lawn lawn);
