@@ -147,7 +147,85 @@ public abstract class Sprinkler
 		
 	void quadrant1LeftRight(Lawn lawn)
 		{
+		int j = y - 1;
+		while(j >= y - getRadius() && j >= 0 && lawn.getPixel(x, j) != 0)
+			{
+			int i = x + 1;
+			int xi = i;
+			int direction = 1;
+			if(x == lawn.getXSize() - 1 || lawn.getPixel(x + 1, j) == 0)
+				{
+				xi = x;
+				direction = -1;
+				}
+			while((x-i)*(x-i)+(y-j)*(y-j) <= getRadius() * getRadius())
+				{
+				lawn.waterPixel(xi, j, getEffParam());
+				if(xi + direction == -1 || xi + direction == lawn.getXSize() || lawn.getPixel(xi + direction, j) == 0)
+					direction *= -1;
+				else
+					xi += direction;
+				++i;
+				}
+			--j;
+			}
+		}
 		
+	protected void quadrant2DownUp(Lawn lawn)
+		{
+		int i = x - 1;
+		while(i >= x - getRadius() && i >= 0 && lawn.getPixel(i, y) != 0)
+			{
+			int j = y - 1;
+			int yi = j;
+			int direction = -1;
+			if(y == 0 || lawn.getPixel(i, y - 1) == 0)
+				{
+				yi = y;
+				direction = 1;
+				}
+			while((x-i)*(x-i)+(y-j)*(y-j) <= getRadius()*getRadius())
+				{
+				lawn.waterPixel(i, yi, getEffParam());
+				if(yi+direction == -1 || yi+direction == lawn.getYSize() || lawn.getPixel(i, yi + direction) == 0)
+					direction *= -1;
+				else
+					yi += direction;
+				--j;
+				}
+			--i;
+			}
+		}
+		
+	protected void quadrant2RightLeft(Lawn lawn)
+		{
+		int j = y - 1;
+		while(j >= y - getRadius() && j >= 0 && lawn.getPixel(x, j) != 0)
+			{
+			int i = x - 1;
+			int xi = i;
+			int direction = -1;
+			if(x == 0 || lawn.getPixel(x - 1, j) == 0)
+				{
+				xi = x;
+				direction = 1;
+				}
+			while((x-i)*(x-i)+(y-j)*(y-j) <= getRadius() * getRadius())
+				{
+				lawn.waterPixel(xi, j, getEffParam());
+				if(xi + direction == -1 || xi + direction == lawn.getXSize() || lawn.getPixel(xi + direction, j) == 0)
+					direction *= -1;
+				else
+					xi += direction;
+				--i;
+				}
+			--j;
+			}
+		}
+		
+	protected void quadrant3UpDown(Lawn lawn)
+		{
+		//TODO:
 		}
 		
 	public abstract void putSprinkler(Lawn lawn);
