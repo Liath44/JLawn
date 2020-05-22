@@ -1,16 +1,30 @@
 public abstract class Sprinkler
 	{
+	//TODO: I FORGOT ABOUT THE BOUNCE AAAAAA
+		
 	//TODO: abstract variables - type/code???
 	//workaround: another class for type and code. Just pass the reference
-	protected final int x;
-	protected final int y;
+	private final int x;
+	private final int y;
 	//placement degree of sprinkler
 	protected final int deg;
 	protected static int radius;
+	private static boolean bounce;
+	
 	
 	public static void setRadius(int radius)
 		{
 		Sprinkler.radius = radius;
+		}
+		
+	public static void setBounce()
+		{
+		bounce = !bounce;
+		}
+		
+	public static void setBounce(boolean bounce)
+		{
+		Sprinkler.bounce = bounce;
 		}
 		
 	public int getDiameter()
@@ -42,6 +56,8 @@ public abstract class Sprinkler
 		int direction = -1;
 		if(y == 0 || lawn.getPixel(x, i) == 0)
 			{
+			if(!bounce)
+				return;
 			yi = y;
 			direction = 1;
 			}
@@ -49,7 +65,11 @@ public abstract class Sprinkler
 			{
 			lawn.waterPixel(x, yi, 2*getEffParam());
 			if(yi + direction == -1 || yi + direction == lawn.getYSize() || lawn.getPixel(x, yi+direction) == 0)
+				{
+				if(!bounce)
+					return;
 				direction *= -1;
+				}
 			else
 				yi += direction;
 			--i;
@@ -63,6 +83,8 @@ public abstract class Sprinkler
 		int direction = 1;
 		if(y == lawn.getYSize() - 1 || lawn.getPixel(x, y+1) == 0)
 			{
+			if(!bounce)
+				return;
 			yi = y;
 			direction = -1;
 			}
@@ -70,7 +92,11 @@ public abstract class Sprinkler
 			{
 			lawn.waterPixel(x, yi, 2*getEffParam());
 			if(yi + direction == -1 || yi + direction == lawn.getYSize() || lawn.getPixel(x, yi + direction) == 0)
+				{
+				if(!bounce)
+					return;
 				direction *= -1;
+				}
 			else
 				yi += direction;
 			++i;
@@ -84,6 +110,8 @@ public abstract class Sprinkler
 		int direction = -1;
 		if(x == 0 || lawn.getPixel(x - 1, y) == 0)
 			{
+			if(!bounce)
+				return;
 			xi = x;
 			direction = 1;
 			}
@@ -91,7 +119,11 @@ public abstract class Sprinkler
 			{
 			lawn.waterPixel(xi, y, 2*getEffParam());
 			if(xi + direction == -1 || xi + direction == lawn.getXSize() || lawn.getPixel(xi + direction, y) == 0)
+				{
+				if(!bounce)
+					return;
 				direction *= -1;
+				}
 			else
 				xi += direction;
 			--i;
@@ -105,6 +137,8 @@ public abstract class Sprinkler
 		int direction = 1;
 		if(x + 1 == lawn.getXSize() || lawn.getPixel(x + 1, y) == 0)
 			{
+			if(!bounce)
+				return;
 			xi = x;
 			direction = -1;
 			}
@@ -112,7 +146,11 @@ public abstract class Sprinkler
 			{
 			lawn.waterPixel(xi, y, 2*getEffParam());
 			if(xi + direction == -1 || xi + direction == lawn.getXSize() || lawn.getPixel(xi + direction, y) == 0)
+				{
+				if(!bounce)
+					return;
 				direction *= -1;
+				}
 			else
 				xi += direction;
 			++i;
@@ -129,6 +167,9 @@ public abstract class Sprinkler
 			int direction = -1;
 			if(y == 0 || lawn.getPixel(i, y - 1) == 0)
 				{
+				//If we shouldn't bounce then end this iteration
+				if(!bounce)
+					j = y - getRadius() - 1;
 				yi = y;
 				direction = 1;
 				}
@@ -136,7 +177,11 @@ public abstract class Sprinkler
 				{
 				lawn.waterPixel(i, yi, getEffParam());
 				if(yi + direction == -1 || yi + direction == lawn.getYSize() || lawn.getPixel(i, yi + direction) == 0)
+					{
+					if(!bounce)
+						j = y - getRadius();
 					direction *= -1;
+					}
 				else
 					yi += direction;
 				--j;
@@ -155,6 +200,8 @@ public abstract class Sprinkler
 			int direction = 1;
 			if(x == lawn.getXSize() - 1 || lawn.getPixel(x + 1, j) == 0)
 				{
+				if(!bounce)
+					i = x - getRadius() - 1;
 				xi = x;
 				direction = -1;
 				}
@@ -162,7 +209,11 @@ public abstract class Sprinkler
 				{
 				lawn.waterPixel(xi, j, getEffParam());
 				if(xi + direction == -1 || xi + direction == lawn.getXSize() || lawn.getPixel(xi + direction, j) == 0)
+					{
+					if(!bounce)
+						i = x - getRadius() - 2;
 					direction *= -1;
+					}
 				else
 					xi += direction;
 				++i;
@@ -181,6 +232,8 @@ public abstract class Sprinkler
 			int direction = -1;
 			if(y == 0 || lawn.getPixel(i, y - 1) == 0)
 				{
+				if(!bounce)
+					j = y - getRadius() - 1;
 				yi = y;
 				direction = 1;
 				}
@@ -188,7 +241,11 @@ public abstract class Sprinkler
 				{
 				lawn.waterPixel(i, yi, getEffParam());
 				if(yi+direction == -1 || yi+direction == lawn.getYSize() || lawn.getPixel(i, yi + direction) == 0)
+					{
+					if(!bounce)
+						j = y - getRadius();
 					direction *= -1;
+					}
 				else
 					yi += direction;
 				--j;
@@ -207,6 +264,8 @@ public abstract class Sprinkler
 			int direction = -1;
 			if(x == 0 || lawn.getPixel(x - 1, j) == 0)
 				{
+				if(!bounce)
+					i = x - getRadius() - 1;
 				xi = x;
 				direction = 1;
 				}
@@ -214,7 +273,11 @@ public abstract class Sprinkler
 				{
 				lawn.waterPixel(xi, j, getEffParam());
 				if(xi + direction == -1 || xi + direction == lawn.getXSize() || lawn.getPixel(xi + direction, j) == 0)
+					{
+					if(!bounce)
+						i = x - getRadius();
 					direction *= -1;
+					}
 				else
 					xi += direction;
 				--i;
@@ -233,6 +296,8 @@ public abstract class Sprinkler
 			int direction = 1;
 			if(y == lawn.getYSize() - 1 || lawn.getPixel(i, y + 1) == 0)
 				{
+				if(!bounce)
+					j = y - getRadius() - 1;
 				yi = y;
 				direction = -1;
 				}
@@ -240,7 +305,11 @@ public abstract class Sprinkler
 				{
 				lawn.waterPixel(i, yi, getEffParam());
 				if(yi + direction == -1 || yi + direction == lawn.getYSize() || lawn.getPixel(i, yi + direction) == 0)
+					{
+					if(!bounce)
+						j = y - getRadius() - 2;
 					direction *= -1;
+					}
 				else
 					yi += direction;
 				++j;
@@ -259,6 +328,8 @@ public abstract class Sprinkler
 			int direction = -1;
 			if(x == 0 || lawn.getPixel(x - 1, j) == 0)
 				{
+				if(!bounce)
+					i = x - getRadius() - 1;
 				xi = x;
 				direction = 1;
 				}
@@ -266,7 +337,10 @@ public abstract class Sprinkler
 				{
 				lawn.waterPixel(xi, j, getEffParam());
 				if(xi + direction == -1 || xi + direction == lawn.getXSize() || lawn.getPixel(xi + direction, j) == 0)
+					{
+					i = x - getRadius();
 					direction *= -1;
+					}
 				else
 					xi += direction;
 				--i;
@@ -285,6 +359,8 @@ public abstract class Sprinkler
 			int direction = 1;
 			if(y == lawn.getYSize() - 1 || lawn.getPixel(i, y + 1) == 0)
 				{
+				if(!bounce)
+					j = y - getRadius() - 1;
 				yi = y;
 				direction = -1;
 				}
@@ -292,7 +368,11 @@ public abstract class Sprinkler
 				{
 				lawn.waterPixel(i, yi, getEffParam());
 				if(yi + direction == -1 || yi + direction == lawn.getYSize() || lawn.getPixel(i, yi + direction) == 0)
+					{
+					if(!bounce)
+						j = y - getRadius() - 2;
 					direction *= -1;
+					}
 				else
 					yi += direction;
 				++j;
@@ -311,6 +391,8 @@ public abstract class Sprinkler
 			int direction = 1;
 			if(x == lawn.getXSize() - 1 || lawn.getPixel(x + 1, j) == 0)
 				{
+				if(!bounce)
+					i = x - getRadius() - 1;
 				xi = x;
 				direction = -1;
 				}
@@ -318,7 +400,11 @@ public abstract class Sprinkler
 				{
 				lawn.waterPixel(xi, j, getEffParam());
 				if(xi + direction == -1 || xi + direction == lawn.getXSize() || lawn.getPixel(xi + direction, j) == 0)
+					{
+					if(!bounce)
+						i = x - getRadius() - 2;
 					direction *= -1;
+					}
 				else
 					xi += direction;
 				++i;

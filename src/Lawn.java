@@ -5,7 +5,6 @@ public class Lawn
 	private int[][] lawn;
 	private ArrayList<Sprinkler> sprinklers;
 	private int time;
-	private boolean bounce;
 	
 	public int getPixel(int x, int y)
 		{
@@ -52,11 +51,10 @@ public class Lawn
 			}
 		}
 		
-	public Lawn(int[][] lawn, int time, boolean bounce)
+	public Lawn(int[][] lawn, int time)
 		{
 		this.lawn = lawn;
 		sprinklers = new ArrayList<>();
 		this.time = time;
-		this.bounce = bounce;
 		}
 	}

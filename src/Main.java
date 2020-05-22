@@ -12,7 +12,7 @@ public class Main
 			{
 			Sprinkler.setRadius(2);
 			Gardener gardener = new Gardener();
-			Lawn lawn = lawnreader.createLawn("lawnfile", 10, true);
+			Lawn lawn = lawnreader.createLawn("lawnfile", 10);
 			Planner planner = new Planner();
 			gardener.placeSprinklers(lawn, planner);
 			lawn.printLawn();

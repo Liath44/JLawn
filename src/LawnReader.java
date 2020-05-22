@@ -155,10 +155,10 @@ public class LawnReader
 		return outcome;
 		}
 		
-	public Lawn createLawn(String path, int time, boolean bounce) throws IOException, EmptyFileException, 
+	public Lawn createLawn(String path, int time) throws IOException, EmptyFileException, 
 	ImproperCharException, TooManyColumnsException, InconsistentCharAmountException, TooManyRowsException
 		{
-		return new Lawn(readFile(path), time, bounce);
+		return new Lawn(readFile(path), time);
 		}
 	
 	public LawnReader()
