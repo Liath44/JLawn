@@ -19,7 +19,7 @@ public class Lawn
 		
 	public void waterPixel(int x, int y, int nospins)
 		{
-		lawn[x][y] += time*nospins;
+		lawn[y][x] += time*nospins;
 		}
 		
 	public void markPixel(int x, int y)

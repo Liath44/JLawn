@@ -4,14 +4,12 @@ import FileExceptions.*;
 
 public class LawnReader
 	{
-	//TODO: what if exception is thrown - filereader.close()
-		
 	private final static char GRASS = '*';
 	private final static char WALL = '#';
-	//TODO: set JUMP to 100
-	private final static int JUMP = 1;
+	private final static int JUMP = 100;
 	private final static int MAXWIDTH = 8000;
 	private final static int MAXLEN = 4000;
+	private FileReader filereader;
 	
 	private void copyRow(int row, int to, int[][] source, int[][] destination)
 		{
@@ -51,7 +49,7 @@ public class LawnReader
 		return outcome;
 		}
 		
-	private int[][] readFirstRow(int c, FileReader filereader, int[][] outcome) throws IOException, 
+	private int[][] readFirstRow(int c, int[][] outcome) throws IOException, 
 	ImproperCharException, TooManyColumnsException
 		{
 		int maxlen = JUMP;
@@ -83,7 +81,7 @@ public class LawnReader
 		return outcome;
 		}
 	
-	private int[][] readRest(FileReader filereader, int[][] outcome) throws IOException, 
+	private int[][] readRest(int[][] outcome) throws IOException, 
 	InconsistentCharAmountException, ImproperCharException, TooManyRowsException
 		{
 		int maxwidth = JUMP;
@@ -141,17 +139,15 @@ public class LawnReader
 	private int[][] readFile(String path) throws IOException, EmptyFileException, ImproperCharException, 
 	TooManyColumnsException, InconsistentCharAmountException, TooManyRowsException
 		{
-		FileReader filereader = new FileReader(path);
+		filereader = new FileReader(path);
 		int[][] outcome = new int[1][JUMP];
 		int c = filereader.read();
 		if(c == -1)
 			throw new EmptyFileException();
 		if(c != GRASS && c != WALL)
 			throw new ImproperCharException((char)c);
-		outcome = readFirstRow(c, filereader, outcome);
-		outcome = readRest(filereader, outcome);
-		//TODO: what if exception is thrown
-		filereader.close();
+		outcome = readFirstRow(c, outcome);
+		outcome = readRest(outcome);
 		return outcome;
 		}
 		
@@ -163,6 +159,12 @@ public class LawnReader
 		return lawn;
 		}
 	
+	public void tidyUp() throws IOException
+		{
+		if(filereader != null)	
+			filereader.close();
+		}
+		
 	public LawnReader()
 		{
 		}

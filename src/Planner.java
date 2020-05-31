@@ -272,4 +272,8 @@ public class Planner
 			checkForDownUp2(lawn, x, i, xsize, ysize, len, rectangles);
 			}
 		}
+		
+	public Planner()
+		{
+		}
 	}

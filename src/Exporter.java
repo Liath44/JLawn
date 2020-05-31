@@ -11,7 +11,7 @@ public class Exporter
 	private final Picasso8 picasso;
 	private BufferedWriter writer;
 		
-	public void exportSprinklerList(Lawn lawn, String path) throws IOException
+	public void createSprinklerList(Lawn lawn, String path) throws IOException
 		{
 		writer = new BufferedWriter(new FileWriter(path));
 		writer.write("Number of sprinklers: ");
@@ -68,18 +68,18 @@ public class Exporter
 			}
 		}
 		
-	public void createBitmap(Lawn lawn, String path) throws IOException
-		{
-		picasso.initializeBitmap(path, lawn);
-		initializePalette();
-		paintBitmap(lawn);
-		}
-		
 	public void tidyUp() throws IOException
 		{
 		if(writer != null)
 			writer.close();
 		picasso.tidyUp();
+		}
+		
+	public void createBitmap(Lawn lawn, String path) throws IOException
+		{
+		picasso.initializeBitmap(path, lawn);
+		initializePalette();
+		paintBitmap(lawn);
 		}
 		
 	public Exporter()

@@ -7,17 +7,32 @@ public class Main
     {
     public static void main(String[] args)
         {
+        Sprinkler.setRadius(50);
 	    LawnReader lawnreader = new LawnReader();
-	    Picasso8 picasso = new Picasso8();
+		Exporter exporter = new Exporter();
 		try
 			{
 			Lawn lawn = lawnreader.createLawn(args[0], 1);
-			picasso.initializeBitmap("BITMAP", lawn);
-			picasso.paintBitmap(lawn);
+			Gardener Josh = new Gardener();
+			Josh.placeSprinklers(lawn, new Planner());
+			exporter.createBitmap(lawn, "BITMAP");
+			exporter.createSprinklerList(lawn, "SPRINKLERS");
 			}
 		catch(Exception e)
 			{
 			System.out.println(e.getMessage());
+			}
+		finally 
+			{
+			try
+				{
+				exporter.tidyUp();
+				lawnreader.tidyUp();
+				}
+			catch(Exception e)
+				{
+				System.out.println(e.getMessage());
+				}
 			}
         }
     }
