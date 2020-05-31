@@ -1,3 +1,4 @@
+import AuxiliaryClasses.Colour;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -10,6 +11,15 @@ public class Picasso8
 	private final static int BIHSIZE = 40;
 	private final static byte[] SIGNATURE = {'B', 'M'};
 
+	private void writeColour(Colour colour) throws IOException
+		{
+		//No need for additional offset when JUMP = 100
+		fos.write(colour.getBlue());
+		fos.write(colour.getGreen());
+		fos.write(colour.getRed());
+		fos.write((byte)0);
+		}
+	
 	public void initializeBitmap(String path, Lawn lawn) throws IOException
 		{
 		int tmpnocolours = 3;

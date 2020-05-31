@@ -5,6 +5,7 @@ public class Lawn
 	private int[][] lawn;
 	private ArrayList<Sprinkler> sprinklers;
 	private int time;
+	private int waterablepixels;
 	
 	public int getPixel(int x, int y)
 		{
@@ -49,6 +50,47 @@ public class Lawn
 	public int getSprinklerNumber()
 		{
 		return sprinklers.size();
+		}
+		
+	public int maxPixel()
+		{
+		int outcome = lawn[0][0];
+		for(int j = 0; j < getYSize(); j++)
+			{
+			for(int i = 0; i < getXSize(); i++)
+				{
+				if(lawn[j][i] > outcome)
+					outcome = lawn[j][i];
+				}
+			}
+		return outcome;
+		}
+		
+	public void setWaterablePixels()
+		{
+		int outcome = 0;
+		for(int j = 0; j < getYSize(); j++)
+			{
+			for(int i = 0; i < getXSize(); i++)
+				{
+				if(lawn[j][i] != 0)
+					outcome++;
+				}
+			}
+		waterablepixels = outcome;
+		}
+		
+	public double meanPixel()
+		{
+		int sum = 0;
+		for(int j = 0; j < getYSize(); j++)
+			{
+			for(int i = 0; i < getXSize(); i++)
+				{
+				sum += lawn[j][i];
+				}
+			}
+		return (double)sum/(double)waterablepixels;
 		}
 		
 	public void printLawn()

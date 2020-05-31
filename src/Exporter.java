@@ -1,6 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import AuxiliaryClasses.Colour;
 
 public class Exporter 
 	{
@@ -24,5 +25,8 @@ public class Exporter
 			}
 		}
 		
-	
+	public void createBitmap(Lawn lawn, String path)
+		{
+		
+		}
 	}

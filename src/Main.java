@@ -12,7 +12,7 @@ public class Main
 		try
 			{
 			Lawn lawn = lawnreader.createLawn(args[0], 1);
-			picasso.initializeBitmap("bitmap", lawn);
+			picasso.initializeBitmap("BITMAP", lawn);
 			picasso.paintBitmap(lawn);
 			}
 		catch(Exception e)

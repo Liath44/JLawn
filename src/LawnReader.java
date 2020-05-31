@@ -158,7 +158,9 @@ public class LawnReader
 	public Lawn createLawn(String path, int time) throws IOException, EmptyFileException, 
 	ImproperCharException, TooManyColumnsException, InconsistentCharAmountException, TooManyRowsException
 		{
-		return new Lawn(readFile(path), time);
+		Lawn lawn = new Lawn(readFile(path), time);
+		lawn.setWaterablePixels();
+		return lawn;
 		}
 	
 	public LawnReader()
