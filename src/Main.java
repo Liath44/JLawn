@@ -8,16 +8,14 @@ public class Main
     public static void main(String[] args)
         {
 	    LawnReader lawnreader = new LawnReader();
-	    try
+	    Picasso8 picasso = new Picasso8();
+		try
 			{
-			Sprinkler.setRadius(2);
-			Gardener gardener = new Gardener();
-			Lawn lawn = lawnreader.createLawn("lawnfile", 10);
-			Planner planner = new Planner();
-			gardener.placeSprinklers(lawn, planner);
-			lawn.printLawn();
+			Lawn lawn = lawnreader.createLawn(args[0], 1);
+			picasso.initializeBitmap("bitmap", lawn);
+			picasso.paintBitmap(lawn);
 			}
-	    catch(Exception e)
+		catch(Exception e)
 			{
 			System.out.println(e.getMessage());
 			}

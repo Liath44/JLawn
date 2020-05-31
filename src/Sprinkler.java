@@ -1,7 +1,5 @@
 public abstract class Sprinkler
 	{
-	//TODO: I FORGOT ABOUT THE BOUNCE AAAAAA
-		
 	//TODO: abstract variables - type/code???
 	//workaround: another class for type and code. Just pass the reference
 	private final int x;
