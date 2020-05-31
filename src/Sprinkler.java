@@ -9,7 +9,6 @@ public abstract class Sprinkler
 	protected static int radius;
 	private static boolean bounce;
 	
-	
 	public static void setRadius(int radius)
 		{
 		Sprinkler.radius = radius;
@@ -28,6 +27,21 @@ public abstract class Sprinkler
 	public int getDiameter()
 		{
 		return getRadius() * 2 + 1;
+		}
+		
+	public int getx()
+		{
+		return x;
+		}
+		
+	public int gety()
+		{
+		return y;
+		}
+		
+	public int getDeg()
+		{
+		return deg;
 		}
 		
 	public static int codeToType(int code)

@@ -41,6 +41,16 @@ public class Lawn
 		sprinklers.add(sprinkler);
 		}
 		
+	public ArrayList<Sprinkler> getSprinklers()
+		{
+		return sprinklers;
+		}
+		
+	public int getSprinklerNumber()
+		{
+		return sprinklers.size();
+		}
+		
 	public void printLawn()
 		{
 		for(int j = 0; j < getYSize(); j++)
