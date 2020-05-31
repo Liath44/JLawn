@@ -80,7 +80,7 @@ public class Lawn
 		waterablepixels = outcome;
 		}
 		
-	public double meanPixel()
+	public int meanPixel()
 		{
 		int sum = 0;
 		for(int j = 0; j < getYSize(); j++)
@@ -90,7 +90,7 @@ public class Lawn
 				sum += lawn[j][i];
 				}
 			}
-		return (double)sum/(double)waterablepixels;
+		return sum/waterablepixels;
 		}
 		
 	public void printLawn()

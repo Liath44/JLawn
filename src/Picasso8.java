@@ -10,10 +10,11 @@ public class Picasso8
 	private final static int FHSIZE = 14;
 	private final static int BIHSIZE = 40;
 	private final static byte[] SIGNATURE = {'B', 'M'};
+	private final int nocolours;
 
-	private void writeColour(Colour colour) throws IOException
+	public void writeColour(Colour colour) throws IOException
 		{
-		//No need for additional offset when JUMP = 100
+		//No need for additional offset when JUMP == 100
 		fos.write(colour.getBlue());
 		fos.write(colour.getGreen());
 		fos.write(colour.getRed());
@@ -22,13 +23,12 @@ public class Picasso8
 	
 	public void initializeBitmap(String path, Lawn lawn) throws IOException
 		{
-		int tmpnocolours = 3;
 		fos = new FileOutputStream(path);
 		fos.write(SIGNATURE);
-		fos.write(intToDWord(lawn.getXSize() * lawn.getYSize() + FHSIZE + BIHSIZE + tmpnocolours * COLSIZE));
+		fos.write(intToDWord(lawn.getXSize() * lawn.getYSize() + FHSIZE + BIHSIZE + nocolours * COLSIZE));
 		fos.write(intToWord(0));
 		fos.write(intToWord(0));
-		fos.write(intToDWord(FHSIZE + BIHSIZE + tmpnocolours * COLSIZE));
+		fos.write(intToDWord(FHSIZE + BIHSIZE + nocolours * COLSIZE));
 		fos.write(intToDWord(BIHSIZE));
 		fos.write(intToDWord(lawn.getXSize()));
 		fos.write(intToDWord(lawn.getYSize()));
@@ -38,31 +38,14 @@ public class Picasso8
 		fos.write(intToDWord(0));
 		fos.write(intToDWord(0));
 		fos.write(intToDWord(0));
-		fos.write(intToDWord(tmpnocolours));
+		fos.write(intToDWord(nocolours));
 		fos.write(intToDWord(0));
-		//TEST PALETTE
-		byte[] tmptab = new byte[4];
-		tmptab[0] = (byte)0;//blue
-		tmptab[1] = (byte)0;//green
-		tmptab[2] = (byte)255;//red
-		tmptab[3] = (byte)0;//reserved
-		fos.write(tmptab);
-		fos.write(tmptab);
-		fos.write(tmptab);
 		}
 
-	//TODO: prototype
-	public void paintBitmap(Lawn lawn) throws IOException
+	public void paintBitmap(int colour) throws IOException
 		{
-		for(int j = 0; j < lawn.getYSize(); j++)
-			{
-			//IMPORTANT
-			//The bits representing the bitmap pixels are packed in rows. The size of each row is rounded up to a multiple of 4 bytes (a 32-bit DWORD) by padding.
-			fos.write((byte)0);
-			fos.write((byte)0);
-			for(int i = 0; i < lawn.getXSize(); i++)
-				fos.write((byte)2);
-			}
+		//IF JUMP = 100 PADDING NOT NEEDED
+		fos.write((byte)colour);
 		}
 		
 	public void tidyUp() throws IOException
@@ -82,6 +65,7 @@ public class Picasso8
 		return outcome;
 		}
 		
+	//https://www.javaworld.com/article/2077561/java-tip-60--saving-bitmap-files-in-java.html	
 	private byte[] intToWord(int value)
 		{
 		byte[] outcome = new byte[2];
@@ -90,7 +74,8 @@ public class Picasso8
 		return outcome;
 		}
 		
-	public Picasso8()
+	public Picasso8(int nololours)
 		{
+		this.nocolours = nololours;	
 		}
 	}
