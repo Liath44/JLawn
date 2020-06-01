@@ -8,6 +8,7 @@ public class Main
     public static void main(String[] args)
         {
         Sprinkler.setRadius(50);
+        Sprinkler.setBounce(true);
 	    LawnReader lawnreader = new LawnReader();
 		Exporter exporter = new Exporter();
 		try

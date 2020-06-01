@@ -1,6 +1,5 @@
 import AuxiliaryClasses.Colour;
 
-import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -9,24 +8,24 @@ public class Exporter
 	private final static int NOSHADES = 106;
 	private final static int ENDSHADE = 45;
 	private final Picasso8 picasso;
-	private BufferedWriter writer;
+	private FileWriter writer;
 		
 	public void createSprinklerList(Lawn lawn, String path) throws IOException
 		{
-		writer = new BufferedWriter(new FileWriter(path));
+		writer = new FileWriter(path);
 		writer.write("Number of sprinklers: ");
-		writer.write(lawn.getSprinklerNumber());
+		writer.write(Integer.toString(lawn.getSprinklerNumber()));
 		writer.write("\n\n");
 		for(Sprinkler sprinkler: lawn.getSprinklers())
 			{
 			writer.write("type: ");
-			writer.write(sprinkler.getType());
+			writer.write(Integer.toString(sprinkler.getType()));
 			writer.write(" x = ");
-			writer.write(sprinkler.getx());
+			writer.write(Integer.toString(sprinkler.getx()));
 			writer.write(" y = ");
-			writer.write(sprinkler.gety());
+			writer.write(Integer.toString(sprinkler.gety()));
 			writer.write(" degree = ");
-			writer.write(sprinkler.getDeg());
+			writer.write(Integer.toString(sprinkler.getDeg()));
 			writer.write("\n");
 			}
 		}
