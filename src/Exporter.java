@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Exporter 
 	{
-	private final static int NOSHADES = 210;
+	private final static int NOSHADES = 106;
 	private final static int ENDSHADE = 45;
 	private final Picasso8 picasso;
 	private BufferedWriter writer;
@@ -34,10 +34,10 @@ public class Exporter
 	private void initializePalette() throws IOException
 		{
 		//fill greens - from lightest to dimmest
-		for(int i = 255; i >= ENDSHADE; --i)
+		for(int i = 255; i >= ENDSHADE; i -= 2)
 			picasso.writeColour(new Colour(0, i, 0));
 		//fill reds - from dimmest to lightest
-		for(int j = ENDSHADE; j <= 255; ++j)
+		for(int j = ENDSHADE; j <= 255; j += 2)
 			picasso.writeColour(new Colour(0, 0, j));
 		//white
 		picasso.writeColour(new Colour(255, 255, 255));

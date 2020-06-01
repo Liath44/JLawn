@@ -6,6 +6,7 @@ public class Sprinkler90 extends Sprinkler
 	
 	public void putSprinkler(Lawn lawn)
 		{
+		putFirstPixel(lawn);
 		switch(deg)
 			{
 			case 0:

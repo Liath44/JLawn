@@ -5,7 +5,8 @@ public class Sprinkler180 extends Sprinkler
     private final static int EFFPARAM = 3;
     
     public void putSprinkler(Lawn lawn)
-        { 
+        {
+        putFirstPixel(lawn);
         switch(deg)
             {   
             case(0):

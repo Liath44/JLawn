@@ -6,6 +6,7 @@ public class Sprinkler270 extends Sprinkler
     
     public void putSprinkler(Lawn lawn)
         {
+		putFirstPixel(lawn);
         putPlusUp(lawn);
         putPlusRight(lawn);
         putPlusLeft(lawn);

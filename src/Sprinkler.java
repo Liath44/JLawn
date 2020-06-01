@@ -449,6 +449,11 @@ public abstract class Sprinkler
 		quadrant4UpDown(lawn);
 		}
 		
+	protected void putFirstPixel(Lawn lawn)
+		{
+		lawn.waterPixel(x, y, 2*getEffParam());
+		}
+		
 	public abstract void putSprinkler(Lawn lawn);
 	public abstract int getCode();
 	public abstract int getType();
