@@ -37,7 +37,7 @@ public class Exporter
 		for(int i = 255; i >= ENDSHADE; i -= 2)
 			picasso.writeColour(new Colour(0, i, 0));
 		//fill reds - from dimmest to lightest
-		for(int j = ENDSHADE; j <= 255; j += 2)
+		for(int j = 255; j >= ENDSHADE; j -= 2)
 			picasso.writeColour(new Colour(0, 0, j));
 		//white
 		picasso.writeColour(new Colour(255, 255, 255));
