@@ -44,6 +44,11 @@ public abstract class Sprinkler
 		return deg;
 		}
 		
+	public String toString()
+		{
+		return "type: " + getType() + " x = " + x + " y = " + y + " degree: " + getDeg() + "\n";
+		}
+		
 	public static int codeToType(int code)
 		{
 		return code * 90 + 90;

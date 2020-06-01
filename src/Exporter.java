@@ -18,15 +18,7 @@ public class Exporter
 		writer.write("\n\n");
 		for(Sprinkler sprinkler: lawn.getSprinklers())
 			{
-			writer.write("type: ");
-			writer.write(Integer.toString(sprinkler.getType()));
-			writer.write(" x = ");
-			writer.write(Integer.toString(sprinkler.getx()));
-			writer.write(" y = ");
-			writer.write(Integer.toString(sprinkler.gety()));
-			writer.write(" degree = ");
-			writer.write(Integer.toString(sprinkler.getDeg()));
-			writer.write("\n");
+			writer.write(sprinkler.toString());
 			}
 		}
 	
