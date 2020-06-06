@@ -4,6 +4,7 @@ import Property.Lawn;
 import javax.swing.*;
 import java.awt.*;
 
+//TODO?: abstract panel for cycles, radius, import, export etc...
 public class MainFrame extends JFrame
 	{
 	private static Lawn lawn = null;
