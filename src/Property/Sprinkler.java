@@ -8,8 +8,8 @@ public abstract class Sprinkler
 	private final int y;
 	//placement degree of sprinkler
 	protected final int deg;
-	protected static int radius;
-	private static boolean bounce;
+	protected static int radius = 50;
+	private static boolean bounce = true;
 	
 	public static void setRadius(int radius)
 		{

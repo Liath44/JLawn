@@ -6,7 +6,7 @@ public class Lawn
 	{
 	private int[][] lawn;
 	private ArrayList<Sprinkler> sprinklers;
-	private int time;
+	private static int time = 1;
 	private int waterablepixels;
 	
 	public int getPixel(int x, int y)
