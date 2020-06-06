@@ -54,6 +54,11 @@ public class Lawn
 		return sprinklers.size();
 		}
 		
+	public static void setTime(int time)
+		{
+		Lawn.time = time;
+		}
+		
 	public int maxPixel()
 		{
 		int outcome = lawn[0][0];

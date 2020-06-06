@@ -17,5 +17,7 @@ public class MainFrame extends JFrame
 		setLayout(new FlowLayout());
 
 		PrevStatusPanel psp = new PrevStatusPanel();
+		
+		
 		}
 	}
