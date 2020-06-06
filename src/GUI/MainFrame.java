@@ -12,16 +12,26 @@ public class MainFrame extends JFrame
 		{
 		super("JLawn");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(400, 610);
-		//TODO: Remake to GridBagLayout
-		setLayout(new FlowLayout());
+		setSize(600, 610);
+		setResizable(false);
+		setVisible(true);
+		setLayout(new GridBagLayout());
+		GridBagConstraints c;
 
 		PrevStatusPanel psp = new PrevStatusPanel();
 		
-		add(new CycleNumberPanel(psp));
-		add(psp);
+		c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = 0;
+		c.anchor = GridBagConstraints.CENTER;
+		add(new CycleNumberPanel(psp), c);
 		
-		setResizable(false);
-		setVisible(true);
+		c = new GridBagConstraints();
+		c.gridx = 1;
+		c.gridy = 0;
+		c.anchor = GridBagConstraints.CENTER;
+		add(new BouncePanel(psp), c);
+		
+		add(psp);
 		}
 	}

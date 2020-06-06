@@ -60,6 +60,11 @@ public abstract class Sprinkler
 		{
 		return type/90 - 1;
 		}
+		
+	public static boolean getBounce()
+		{
+		return bounce;
+		}
 
 	public Sprinkler(int x, int y, int deg)
 		{
