@@ -110,10 +110,9 @@ public class Lawn
 			}
 		}
 		
-	public Lawn(int[][] lawn, int time)
+	public Lawn(int[][] lawn)
 		{
 		this.lawn = lawn;
 		sprinklers = new ArrayList<>();
-		this.time = time;
 		}
 	}
