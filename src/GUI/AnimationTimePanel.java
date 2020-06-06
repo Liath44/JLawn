@@ -1,23 +1,21 @@
 package GUI;
 
-import GUIExceptions.ImproperRadiusException;
-import Property.Sprinkler;
-
+import GUIExceptions.ImproperTimeException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RadiusPanel extends JPanel implements ActionListener
+public class AnimationTimePanel extends JPanel implements ActionListener
 	{
 	private final JTextField field;
-	private final JButton setradius;
+	private final JButton settime;
 	private final PrevStatusPanel psp;
-	
-	public RadiusPanel(PrevStatusPanel psp)
+
+	public AnimationTimePanel(PrevStatusPanel psp)
 		{
 		super();
-		this.psp= psp;
+		this.psp = psp;
 		setLayout(new GridBagLayout());
 		GridBagConstraints c;
 
@@ -25,7 +23,7 @@ public class RadiusPanel extends JPanel implements ActionListener
 		c.gridx = 0;
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.LINE_END;
-		JLabel label = new JLabel("set radius:");
+		JLabel label = new JLabel("cycle time:");
 		add(label, c);
 
 		c = new GridBagConstraints();
@@ -39,25 +37,25 @@ public class RadiusPanel extends JPanel implements ActionListener
 		c.gridx = 2;
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.CENTER;
-		setradius = new JButton("set");
-		setradius.addActionListener(this);
-		setradius.setPreferredSize(new Dimension(75, 27));
-		add(setradius, c);
+		settime = new JButton("set");
+		settime.addActionListener(this);
+		settime.setPreferredSize(new Dimension(75, 27));
+		add(settime, c);
 		}
 
 	public void actionPerformed(ActionEvent action)
 		{
 		Object source = action.getSource();
-		if(source == setradius)
+		if(source == settime)
 			{
 			psp.showWait();
 			String number = field.getText();
 			try
 				{
-				int r = Integer.parseInt(number);
-				if(r <= 0)
-					throw new ImproperRadiusException(r);
-				Sprinkler.setRadius(r);
+				int t = Integer.parseInt(number);
+				if(t <= 0)
+					throw new ImproperTimeException(t);
+				//TODO: function here
 				psp.showOK();
 				}
 			catch(Exception e)

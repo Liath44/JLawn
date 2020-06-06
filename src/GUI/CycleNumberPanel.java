@@ -46,10 +46,10 @@ public class CycleNumberPanel extends JPanel implements ActionListener
 		
 	public void actionPerformed(ActionEvent action)
 		{
-		psp.showWait();
 		Object source = action.getSource();
 		if(source == setnumber)
-			{
+			{ 
+			psp.showWait();
 			String number = field.getText();
 			try
 				{

@@ -33,6 +33,18 @@ public class MainFrame extends JFrame
 		c.anchor = GridBagConstraints.CENTER;
 		add(new BouncePanel(psp), c);
 		
+		c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = 1;
+		c.anchor = GridBagConstraints.CENTER;
+		add(new RadiusPanel(psp), c);
+		
+		c = new GridBagConstraints();
+		c.gridx = 1;
+		c.gridy = 1;
+		c.anchor = GridBagConstraints.CENTER;
+		add(new AnimationTimePanel(psp), c);
+		
 		add(psp);
 		}
 	}

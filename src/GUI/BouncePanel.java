@@ -55,10 +55,10 @@ public class BouncePanel extends JPanel implements ActionListener
 		
 	public void actionPerformed(ActionEvent action)
 		{
-		psp.showWait();
 		Object source = action.getSource();
 		if(source == button)
 			{
+			psp.showWait();
 			Sprinkler.setBounce();
 			switchLabel();
 			psp.showOK();
