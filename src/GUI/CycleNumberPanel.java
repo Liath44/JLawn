@@ -40,6 +40,7 @@ public class CycleNumberPanel extends JPanel implements ActionListener
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.CENTER;
 		setnumber = new JButton("set");
+		setnumber.addActionListener(this);
 		add(setnumber, c);
 		}
 		
@@ -61,7 +62,13 @@ public class CycleNumberPanel extends JPanel implements ActionListener
 			catch(Exception e)
 				{
 				psp.showError();
-				//ERROR panel
+				EventQueue.invokeLater(new Runnable()
+					{
+					public void run()
+						{
+						new ErrorFrame(e.getMessage());
+						}
+					});
 				}
 			}
 		}

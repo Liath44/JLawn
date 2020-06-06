@@ -18,6 +18,10 @@ public class MainFrame extends JFrame
 
 		PrevStatusPanel psp = new PrevStatusPanel();
 		
+		add(new CycleNumberPanel(psp));
+		add(psp);
 		
+		setResizable(false);
+		setVisible(true);
 		}
 	}
