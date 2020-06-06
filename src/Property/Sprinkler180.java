@@ -1,3 +1,5 @@
+package Property;
+
 public class Sprinkler180 extends Sprinkler
     {
     private final static int TYPE = 180;

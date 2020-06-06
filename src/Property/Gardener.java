@@ -1,3 +1,5 @@
+package Property;
+
 import AuxiliaryClasses.GardenersNote;
 import AuxiliaryClasses.Rectangle;
 import AuxiliaryClasses.Point;

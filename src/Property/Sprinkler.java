@@ -1,3 +1,5 @@
+package Property;
+
 public abstract class Sprinkler
 	{
 	//TODO: abstract variables - type/code???

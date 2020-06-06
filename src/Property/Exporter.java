@@ -1,3 +1,5 @@
+package Property;
+
 import AuxiliaryClasses.Colour;
 
 import java.io.FileWriter;

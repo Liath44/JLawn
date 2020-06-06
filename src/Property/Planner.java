@@ -1,3 +1,5 @@
+package Property;
+
 import AuxiliaryClasses.Rectangle;
 import AuxiliaryClasses.Point;
 import java.util.ArrayList;
