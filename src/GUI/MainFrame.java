@@ -58,6 +58,12 @@ public class MainFrame extends JFrame
 		c.anchor = GridBagConstraints.CENTER;
 		add(new WaterButton(psp), c);
 		
+		c = new GridBagConstraints();
+		c.gridx = 1;
+		c.gridy = 3;
+		c.anchor = GridBagConstraints.CENTER;
+		add(new AnimationButton(psp), c);
+		
 		add(psp);
 		}
 		
