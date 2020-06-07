@@ -64,6 +64,12 @@ public class MainFrame extends JFrame
 		c.anchor = GridBagConstraints.CENTER;
 		add(new AnimationButton(psp), c);
 		
+		c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = 4;
+		c.anchor = GridBagConstraints.CENTER;
+		add(new FileButton(psp), c);
+		
 		add(psp);
 		}
 		

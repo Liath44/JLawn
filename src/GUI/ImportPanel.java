@@ -38,7 +38,7 @@ public class ImportPanel extends JPanel implements ActionListener
 		c.gridx = 2;
 		c.gridy = 0;
 		c.anchor = GridBagConstraints.CENTER;
-		compute = new JButton("compute");
+		compute = new JButton("import");
 		compute.addActionListener(this);
 		compute.setPreferredSize(new Dimension(100, 27));
 		add(compute, c);

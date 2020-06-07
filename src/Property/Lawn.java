@@ -118,5 +118,6 @@ public class Lawn
 	public Lawn(int[][] lawn)
 		{
 		this.lawn = lawn;
+		sprinklers = new ArrayList<>();
 		}
 	}
