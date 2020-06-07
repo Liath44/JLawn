@@ -16,6 +16,7 @@ public class Gardener
 		
 	public void placeSprinklers(Lawn lawn, Planner planner)
 		{
+		lawn.resetSprinklers();
 		ArrayList<Point> areas = planner.findAreas(lawn);
 		for(Point area: areas)
 			{

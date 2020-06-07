@@ -52,11 +52,22 @@ public class MainFrame extends JFrame
 		c.anchor = GridBagConstraints.CENTER;
 		add(new ImportPanel(psp), c);
 		
+		c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = 3;
+		c.anchor = GridBagConstraints.CENTER;
+		add(new WaterButton(psp), c);
+		
 		add(psp);
 		}
 		
 	public static void setLawn(Lawn lawn)
 		{
 		MainFrame.lawn = lawn;
+		}
+		
+	public static Lawn getLawn()
+		{
+		return lawn;
 		}
 	}

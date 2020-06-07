@@ -58,6 +58,7 @@ public class RadiusPanel extends JPanel implements ActionListener
 				if(r <= 0)
 					throw new ImproperRadiusException(r);
 				Sprinkler.setRadius(r);
+				WaterButton.dewater();
 				psp.showOK();
 				}
 			catch(Exception e)

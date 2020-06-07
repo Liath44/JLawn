@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Lawn
 	{
-	private int[][] lawn;
+	private final int[][] lawn;
 	private ArrayList<Sprinkler> sprinklers;
 	private static int time = 1;
 	private int waterablepixels;
@@ -58,6 +58,11 @@ public class Lawn
 		{
 		Lawn.time = time;
 		}
+		
+	public void resetSprinklers()
+		{
+		sprinklers = new ArrayList<>();
+		}	
 		
 	public int maxPixel()
 		{
@@ -113,6 +118,5 @@ public class Lawn
 	public Lawn(int[][] lawn)
 		{
 		this.lawn = lawn;
-		sprinklers = new ArrayList<>();
 		}
 	}

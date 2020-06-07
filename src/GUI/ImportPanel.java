@@ -56,6 +56,7 @@ public class ImportPanel extends JPanel implements ActionListener
 				String path = field.getText();
 				Lawn lawn = lawnreader.createLawn(path);
 				MainFrame.setLawn(lawn);
+				WaterButton.dewater();
 				psp.showOK();
 				}
 			catch(Exception e)

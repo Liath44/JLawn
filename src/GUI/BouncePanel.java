@@ -61,6 +61,7 @@ public class BouncePanel extends JPanel implements ActionListener
 			psp.showWait();
 			Sprinkler.setBounce();
 			switchLabel();
+			WaterButton.dewater();
 			psp.showOK();
 			}
 		}

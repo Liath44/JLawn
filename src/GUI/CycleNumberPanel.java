@@ -57,6 +57,7 @@ public class CycleNumberPanel extends JPanel implements ActionListener
 				if(n <= 0)
 					throw new ImproperCycleNumberException(n);
 				Lawn.setTime(n);
+				WaterButton.dewater();
 				psp.showOK();
 				}
 			catch(Exception e)
