@@ -17,7 +17,7 @@ public class BitmapButton extends JButton implements ActionListener
 	public BitmapButton(PrevStatusPanel psp)
 		{
 		super("bitmap");
-		setPreferredSize(new Dimension(110, 27));
+		setPreferredSize(new Dimension(100, 27));
 		this.psp = psp;
 		addActionListener(this);
 		}

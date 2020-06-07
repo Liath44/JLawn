@@ -18,18 +18,23 @@ public class CycleNumberPanel extends JPanel implements ActionListener
 		super();
 		this.psp = psp;
 		setLayout(new GridBagLayout());
+		setPreferredSize(new Dimension(230, 30));
 		GridBagConstraints c;
 		
 		c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = 0;
+		c.weightx = 2;
+		c.ipadx = 5;
 		c.anchor = GridBagConstraints.LINE_END;
 		JLabel label = new JLabel("set NO cycles:");
+		label.setPreferredSize(new Dimension(100, 30));
 		add(label, c);
 		
 		c = new GridBagConstraints();
 		c.gridx = 1;
 		c.gridy = 0;
+		c.weightx = 1;
 		c.anchor = GridBagConstraints.LINE_START;
 		field = new JTextField(3);
 		add(field, c);
@@ -37,7 +42,9 @@ public class CycleNumberPanel extends JPanel implements ActionListener
 		c = new GridBagConstraints();
 		c.gridx = 2;
 		c.gridy = 0;
-		c.anchor = GridBagConstraints.CENTER;
+		c.weightx = 3;
+		c.anchor = GridBagConstraints.LINE_END;
+		c.insets = new Insets(0, 0, 0, 3);
 		setnumber = new JButton("set");
 		setnumber.addActionListener(this);
 		setnumber.setPreferredSize(new Dimension(75, 27));

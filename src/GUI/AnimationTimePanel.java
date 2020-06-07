@@ -17,18 +17,24 @@ public class AnimationTimePanel extends JPanel implements ActionListener
 		super();
 		this.psp = psp;
 		setLayout(new GridBagLayout());
+		setPreferredSize(new Dimension(213, 30));
 		GridBagConstraints c;
 
 		c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = 0;
-		c.anchor = GridBagConstraints.LINE_END;
+		c.weightx = 2;
+		c.ipadx = 5;
+		c.anchor = GridBagConstraints.LINE_START;
+		c.insets = new Insets(0, 15, 0, 0);
 		JLabel label = new JLabel("cycle time:");
+		label.setPreferredSize(new Dimension(71, 30));
 		add(label, c);
 
 		c = new GridBagConstraints();
 		c.gridx = 1;
 		c.gridy = 0;
+		c.weightx = 1;
 		c.anchor = GridBagConstraints.LINE_START;
 		field = new JTextField(3);
 		add(field, c);
@@ -36,7 +42,8 @@ public class AnimationTimePanel extends JPanel implements ActionListener
 		c = new GridBagConstraints();
 		c.gridx = 2;
 		c.gridy = 0;
-		c.anchor = GridBagConstraints.CENTER;
+		c.weightx = 3;
+		c.anchor = GridBagConstraints.LINE_END;
 		settime = new JButton("set");
 		settime.addActionListener(this);
 		settime.setPreferredSize(new Dimension(75, 27));

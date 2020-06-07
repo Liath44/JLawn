@@ -24,61 +24,65 @@ public class MainFrame extends JFrame
 		c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = 0;
-		c.anchor = GridBagConstraints.CENTER;
+		c.gridwidth = 2;
+		c.anchor = GridBagConstraints.LINE_START;
 		add(new CycleNumberPanel(psp), c);
 		
 		c = new GridBagConstraints();
-		c.gridx = 1;
+		c.gridx = 2;
 		c.gridy = 0;
-		c.anchor = GridBagConstraints.CENTER;
+		c.gridwidth = 2;
+		c.anchor = GridBagConstraints.LINE_START;
 		add(new BouncePanel(psp), c);
 		
 		c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = 1;
-		c.anchor = GridBagConstraints.CENTER;
+		c.gridwidth = 2;
+		c.anchor = GridBagConstraints.LINE_START;
 		add(new RadiusPanel(psp), c);
 		
 		c = new GridBagConstraints();
-		c.gridx = 1;
+		c.gridx = 2;
 		c.gridy = 1;
-		c.anchor = GridBagConstraints.CENTER;
+		c.gridwidth = 2;
+		c.anchor = GridBagConstraints.LINE_START;
 		add(new AnimationTimePanel(psp), c);
 		
 		c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = 2;
-		c.gridwidth = 2;
-		c.anchor = GridBagConstraints.CENTER;
+		c.gridwidth = 4;
+		c.anchor = GridBagConstraints.LINE_START;
 		add(new ImportPanel(psp), c);
 		
 		c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = 3;
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.LINE_START;
 		add(new WaterButton(psp), c);
 		
 		c = new GridBagConstraints();
 		c.gridx = 1;
 		c.gridy = 3;
-		c.anchor = GridBagConstraints.CENTER;
+		c.anchor = GridBagConstraints.LINE_START;
 		add(new AnimationButton(psp), c);
 		
 		c = new GridBagConstraints();
-		c.gridx = 0;
-		c.gridy = 4;
-		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 2;
+		c.gridy = 3;
+		c.anchor = GridBagConstraints.LINE_START;
 		add(new FileButton(psp), c);
 		
 		c = new GridBagConstraints();
-		c.gridx = 1;
-		c.gridy = 4;
-		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 3;
+		c.gridy = 3;
+		c.anchor = GridBagConstraints.LINE_START;
 		add(new BitmapButton(psp), c);
 		
 		c = new GridBagConstraints();
 		c.gridx = 0;
-		c.gridy = 5;
+		c.gridy = 4;
 		c.anchor = GridBagConstraints.LINE_START;
 		add(psp, c);
 		}

@@ -18,7 +18,7 @@ public class WaterButton extends JButton implements ActionListener
 	public WaterButton(PrevStatusPanel psp)
 		{
 		super("water");
-		setPreferredSize(new Dimension(110, 27));
+		setPreferredSize(new Dimension(100, 27));
 		this.psp = psp;
 		addActionListener(this);
 		}

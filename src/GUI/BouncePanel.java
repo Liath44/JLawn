@@ -19,19 +19,25 @@ public class BouncePanel extends JPanel implements ActionListener
 		super();
 		this.psp = psp;
 		setLayout(new GridBagLayout());
+		setPreferredSize(new Dimension(213, 30));
 		GridBagConstraints c;
 
 		c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = 0;
-		c.anchor = GridBagConstraints.CENTER;
+		c.weightx = 2;
+		c.ipadx = 5;
+		c.anchor = GridBagConstraints.LINE_START;
+		c.insets = new Insets(0, 15, 0, 0);
 		JLabel label = new JLabel("bounce:");
+		label.setPreferredSize(new Dimension(71, 30));
 		add(label, c);
 
 		c = new GridBagConstraints();
 		c.gridx = 1;
 		c.gridy = 0;
-		c.anchor = GridBagConstraints.CENTER;
+		c.weightx = 1;
+		c.anchor = GridBagConstraints.LINE_END;
 		button = new JButton("true");
 		button.setForeground(TRUECOLOUR);
 		button.addActionListener(this);
