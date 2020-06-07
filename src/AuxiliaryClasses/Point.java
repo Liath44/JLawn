@@ -1,7 +1,15 @@
 package AuxiliaryClasses;
 
+/*
+ * Used to mark Areas 
+ * 
+ * Area is a largest possible set of pixels where each pixel can be reached 
+ * from every pixel without stepping on wall - the idea is analogical to 
+ * connected graphs
+ */
 public class Point
 	{
+	//Point is defined with two numbers
 	private final int x;
 	private final int y;
 

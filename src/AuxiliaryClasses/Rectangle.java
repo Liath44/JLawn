@@ -1,20 +1,36 @@
 package AuxiliaryClasses;
 
+/*
+ * During the process of watering the Lawn each Area
+ * is divided into rectangles.
+ */
 public class Rectangle
 	{
+	/*
+	 * Rectangle is defined with two points
+	 * p1 - left-up corner
+	 * p2 - right-down corner
+	 */
 	private Point p1;
 	private Point p2;
 
+	/*
+	 * Checks if point is inside the rectangle
+	 * 
+	 * int x, y - coordinates of said point
+	 */
 	public boolean isInRectangle(int x, int y)
 		{
 		return (x >= p1.getX() && y >= p1.getY() && x <= p2.getX() && y <= p2.getY());
 		}
 	
+	//returns width of the rectangle
 	public int getWidth()
 		{
 		return p2.getY() - p1.getY() + 1;
 		}	
 		
+	//returns length of the rectangle
 	public int getLength()
 		{
 		return p2.getX() - p1.getX() + 1;

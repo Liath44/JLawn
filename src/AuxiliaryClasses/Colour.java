@@ -1,5 +1,9 @@
 package AuxiliaryClasses;
 
+/*
+ * Stores information and methods necessary for 
+ * writing colour into palette.
+ */
 public class Colour 
 	{
 	private final int blue;
