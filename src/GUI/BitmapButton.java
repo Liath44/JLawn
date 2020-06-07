@@ -1,49 +1,46 @@
 package GUI;
 
-import GUIExceptions.AlreadyWateredException;
 import GUIExceptions.InitializeFirstException;
-import Property.Gardener;
+import Property.Exporter;
 import Property.Lawn;
-import Property.Planner;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class WaterButton extends JButton implements ActionListener
+public class BitmapButton extends JButton implements ActionListener
 	{
 	private final PrevStatusPanel psp;
-	private static boolean operationdone = false;
+	private final static String PATH = "BITMAP";
 	
-	public WaterButton(PrevStatusPanel psp)
+	public BitmapButton(PrevStatusPanel psp)
 		{
-		super("water");
+		super("bitmap");
 		setPreferredSize(new Dimension(110, 27));
 		this.psp = psp;
 		addActionListener(this);
 		}
-		
-	private void waterLawn() throws AlreadyWateredException, InitializeFirstException
+
+	private void exportBitmap() throws Exception
 		{
 		Lawn lawn = MainFrame.getLawn();
-		if(operationdone)
-			throw new AlreadyWateredException();
-		else if(lawn != null)
+		if(lawn != null)
 			{
-			Gardener Josh = new Gardener();
-			Josh.placeSprinklers(lawn, new Planner());
-			operationdone = true;
+			Exporter exporter = new Exporter();
+			exporter.createBitmap(lawn, PATH);
+			exporter.tidyUp();
 			}
 		else
 			throw new InitializeFirstException();
-		}	
+		}
 		
 	public void actionPerformed(ActionEvent action)
 		{
 		psp.showWait();
 		try
 			{
-			waterLawn();
+			exportBitmap();
 			psp.showOK();
 			}
 		catch(Exception e)
@@ -55,12 +52,7 @@ public class WaterButton extends JButton implements ActionListener
 					{
 					new ErrorFrame(e.getMessage());
 					}
-				});	
+				});
 			}
-		}
-		
-	public static void dewater()
-		{
-		WaterButton.operationdone = false;
 		}
 	}

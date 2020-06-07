@@ -8,6 +8,7 @@ public class Lawn
 	private ArrayList<Sprinkler> sprinklers;
 	private static int time = 1;
 	private int waterablepixels;
+	private boolean waswatered = false;
 	
 	public int getPixel(int x, int y)
 		{
@@ -63,6 +64,28 @@ public class Lawn
 		{
 		sprinklers = new ArrayList<>();
 		}	
+		
+	public boolean getWasWatered()
+		{
+		return waswatered;
+		}
+		
+	public void setWasWatered()
+		{
+		waswatered = true;
+		}
+		
+	public void resetLawn()
+		{
+		for(int j = 0; j < getYSize(); j++)
+			{
+			for(int i = 0; i < getXSize(); i++)
+				{
+				if(lawn[j][i] != 0)
+					lawn[j][i] = 1;
+				}
+			}
+		}
 		
 	public int maxPixel()
 		{

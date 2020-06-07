@@ -70,7 +70,17 @@ public class MainFrame extends JFrame
 		c.anchor = GridBagConstraints.CENTER;
 		add(new FileButton(psp), c);
 		
-		add(psp);
+		c = new GridBagConstraints();
+		c.gridx = 1;
+		c.gridy = 4;
+		c.anchor = GridBagConstraints.CENTER;
+		add(new BitmapButton(psp), c);
+		
+		c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = 5;
+		c.anchor = GridBagConstraints.LINE_START;
+		add(psp, c);
 		}
 		
 	public static void setLawn(Lawn lawn)
