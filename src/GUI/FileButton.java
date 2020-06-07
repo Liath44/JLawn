@@ -16,7 +16,7 @@ public class FileButton extends JButton implements ActionListener
 	public FileButton(PrevStatusPanel psp)
 		{
 		super("to file");
-		setPreferredSize(new Dimension(100, 27));
+		setPreferredSize(new Dimension(110, 27));
 		this.psp = psp;
 		addActionListener(this);
 		}

@@ -4,7 +4,6 @@ import Property.Lawn;
 import javax.swing.*;
 import java.awt.*;
 
-//TODO?: abstract panel for cycles, radius, import, export etc...
 public class MainFrame extends JFrame
 	{
 	private static Lawn lawn = null;
@@ -59,31 +58,14 @@ public class MainFrame extends JFrame
 		c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = 3;
-		c.anchor = GridBagConstraints.LINE_START;
-		add(new WaterButton(psp), c);
-		
-		c = new GridBagConstraints();
-		c.gridx = 1;
-		c.gridy = 3;
-		c.anchor = GridBagConstraints.LINE_START;
-		add(new AnimationButton(psp), c);
-		
-		c = new GridBagConstraints();
-		c.gridx = 2;
-		c.gridy = 3;
-		c.anchor = GridBagConstraints.LINE_START;
-		add(new FileButton(psp), c);
-		
-		c = new GridBagConstraints();
-		c.gridx = 3;
-		c.gridy = 3;
-		c.anchor = GridBagConstraints.LINE_START;
-		add(new BitmapButton(psp), c);
+		c.gridwidth = 4;
+		c.anchor = GridBagConstraints.CENTER;
+		add(new ButtonPanel(psp), c);
 		
 		c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = 4;
-		c.anchor = GridBagConstraints.LINE_START;
+		c.anchor = GridBagConstraints.CENTER;
 		add(psp, c);
 		}
 		
