@@ -17,7 +17,7 @@ public class AnimationTimePanel extends JPanel implements ActionListener
 		super();
 		this.psp = psp;
 		setLayout(new GridBagLayout());
-		setPreferredSize(new Dimension(213, 30));
+		setPreferredSize(new Dimension(213, 40));
 		GridBagConstraints c;
 
 		c = new GridBagConstraints();

@@ -18,7 +18,7 @@ public class CycleNumberPanel extends JPanel implements ActionListener
 		super();
 		this.psp = psp;
 		setLayout(new GridBagLayout());
-		setPreferredSize(new Dimension(230, 30));
+		setPreferredSize(new Dimension(230, 40));
 		GridBagConstraints c;
 		
 		c = new GridBagConstraints();
@@ -47,7 +47,7 @@ public class CycleNumberPanel extends JPanel implements ActionListener
 		c.insets = new Insets(0, 0, 0, 3);
 		setnumber = new JButton("set");
 		setnumber.addActionListener(this);
-		setnumber.setPreferredSize(new Dimension(75, 27));
+		setnumber.setPreferredSize(new Dimension(75, 28));
 		add(setnumber, c);
 		}
 		

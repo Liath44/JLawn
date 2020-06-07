@@ -19,7 +19,7 @@ public class RadiusPanel extends JPanel implements ActionListener
 		super();
 		this.psp= psp;
 		setLayout(new GridBagLayout());
-		setPreferredSize(new Dimension(230, 30));
+		setPreferredSize(new Dimension(230, 40));
 		GridBagConstraints c;
 
 		c = new GridBagConstraints();

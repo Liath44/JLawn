@@ -12,7 +12,7 @@ public class MainFrame extends JFrame
 		{
 		super("JLawn");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(600, 610);
+		setSize(470, 240);
 		setResizable(false);
 		setVisible(true);
 		setLayout(new GridBagLayout());
@@ -59,6 +59,7 @@ public class MainFrame extends JFrame
 		c.gridx = 0;
 		c.gridy = 3;
 		c.gridwidth = 4;
+		c.insets = new Insets(7, 0, 7, 0);
 		c.anchor = GridBagConstraints.CENTER;
 		add(new ButtonPanel(psp), c);
 		

@@ -19,7 +19,7 @@ public class BouncePanel extends JPanel implements ActionListener
 		super();
 		this.psp = psp;
 		setLayout(new GridBagLayout());
-		setPreferredSize(new Dimension(213, 30));
+		setPreferredSize(new Dimension(213, 40));
 		GridBagConstraints c;
 
 		c = new GridBagConstraints();
@@ -41,7 +41,7 @@ public class BouncePanel extends JPanel implements ActionListener
 		button = new JButton("true");
 		button.setForeground(TRUECOLOUR);
 		button.addActionListener(this);
-		button.setPreferredSize(new Dimension(75, 27));
+		button.setPreferredSize(new Dimension(75, 28));
 		add(button, c);
 		}
 		

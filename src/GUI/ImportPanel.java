@@ -18,7 +18,7 @@ public class ImportPanel extends JPanel implements ActionListener
 		super();
 		this.psp = psp;
 		setLayout(new GridBagLayout());
-		setPreferredSize(new Dimension(443, 30));
+		setPreferredSize(new Dimension(443, 40));
 		GridBagConstraints c;
 		
 		c = new GridBagConstraints();
@@ -47,7 +47,7 @@ public class ImportPanel extends JPanel implements ActionListener
 		c.insets = new Insets(0, 3, 0, 0);
 		compute = new JButton("import");
 		compute.addActionListener(this);
-		compute.setPreferredSize(new Dimension(100, 27));
+		compute.setPreferredSize(new Dimension(100, 30));
 		add(compute, c);
 		}
 		

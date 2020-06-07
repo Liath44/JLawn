@@ -9,7 +9,7 @@ public class ButtonPanel extends JPanel
         {   
         super();
         GridLayout gl = new GridLayout(1, 4);
-        gl.setHgap(3);
+        gl.setHgap(7);
         setLayout(gl);
         setPreferredSize(new Dimension(443, 30));
         add(new WaterButton(psp));
