@@ -1,14 +1,20 @@
 package Property;
 
+/*
+ * Describes joint arguments and methods
+ * for every sprinkler
+ */
+//TODO: abstract variables - type/code???
+//TODO(?): another class for type and code. Just pass the reference
 public abstract class Sprinkler
 	{
-	//TODO: abstract variables - type/code???
-	//workaround: another class for type and code. Just pass the reference
+	//coordinates of sprinkler
 	private final int x;
 	private final int y;
 	//placement degree of sprinkler
 	protected final int deg;
 	protected static int radius = 50;
+	//should the water bounce against walls
 	private static boolean bounce = true;
 	
 	public static void setRadius(int radius)
@@ -50,12 +56,16 @@ public abstract class Sprinkler
 		{
 		return "type: " + getType() + " x = " + x + " y = " + y + " degree: " + getDeg() + "\n";
 		}
-		
+	
+	//Transforms given code to type
+	//0/1/2/3 -> 90/180/270/360
 	public static int codeToType(int code)
 		{
 		return code * 90 + 90;
 		}
-		
+
+	//Transforms given type to code
+	//0/1/2/3 <- 90/180/270/360
 	public static int typeToCode(int type)
 		{
 		return type/90 - 1;
@@ -73,6 +83,11 @@ public abstract class Sprinkler
 		this.deg = deg;
 		}
 		
+	/*
+	 * Waters Lawn north to the put sprinkler's center
+	 * 
+	 * Lawn lawn - lawn to be watered
+	 */
 	protected void putPlusUp(Lawn lawn)
 		{
 		int i = y - 1;
@@ -99,7 +114,12 @@ public abstract class Sprinkler
 			--i;
 			}
 		}
-		
+
+	/*
+	 * Waters Lawn south to the put sprinkler's center
+	 *
+	 * Lawn lawn - lawn to be watered
+	 */
 	protected void putPlusDown(Lawn lawn)
 		{
 		int i = y + 1;
@@ -126,7 +146,12 @@ public abstract class Sprinkler
 			++i;
 			}
 		}
-		
+
+	/*
+	 * Waters Lawn west to the put sprinkler's center
+	 *
+	 * Lawn lawn - lawn to be watered
+	 */
 	protected void putPlusLeft(Lawn lawn)
 		{
 		int i = x - 1;
@@ -153,7 +178,12 @@ public abstract class Sprinkler
 			--i;
 			}
 		}
-		
+
+	/*
+	 * Waters Lawn east to the put sprinkler's center
+	 *
+	 * Lawn lawn - lawn to be watered
+	 */
 	protected void putPlusRight(Lawn lawn)
 		{
 		int i = x + 1;
@@ -180,7 +210,12 @@ public abstract class Sprinkler
 			++i;
 			}
 		}
-		
+	
+	/*
+	 * Updates Lawn's first quadrant from south to north
+	 * 
+	 * Lawn lawn - lawn to be watered
+	 */
 	private void quadrant1DownUp(Lawn lawn)
 		{
 		int i = x + 1;
@@ -213,7 +248,11 @@ public abstract class Sprinkler
 			++i;
 			}
 		}
-		
+
+	/*
+	 * Analogical to quadrant1DownUp(...) but updates
+	 * first quadrant from west to east
+	 */
 	private void quadrant1LeftRight(Lawn lawn)
 		{
 		int j = y - 1;
@@ -245,7 +284,11 @@ public abstract class Sprinkler
 			--j;
 			}
 		}
-		
+
+	/*
+	 * Analogical to quadrant1DownUp(...) but updates
+	 * second quadrant from south to north
+	 */
 	private void quadrant2DownUp(Lawn lawn)
 		{
 		int i = x - 1;
@@ -277,7 +320,11 @@ public abstract class Sprinkler
 			--i;
 			}
 		}
-		
+
+	/*
+	 * Analogical to quadrant1DownUp(...) but updates
+	 * second quadrant from east to west
+	 */
 	private void quadrant2RightLeft(Lawn lawn)
 		{
 		int j = y - 1;
@@ -309,7 +356,11 @@ public abstract class Sprinkler
 			--j;
 			}
 		}
-		
+
+	/*
+	 * Analogical to quadrant1DownUp(...) but updates
+	 * third quadrant from north to south
+	 */
 	private void quadrant3UpDown(Lawn lawn)
 		{
 		int i = x - 1;
@@ -341,7 +392,11 @@ public abstract class Sprinkler
 			--i;
 			}
 		}
-		
+
+	/*
+	 * Analogical to quadrant1DownUp(...) but updates
+	 * third quadrant from east to west
+	 */
 	private void quadrant3RightLeft(Lawn lawn)
 		{
 		int j = y + 1;
@@ -372,7 +427,11 @@ public abstract class Sprinkler
 			++j;
 			}
 		}
-		
+
+	/*
+	 * Analogical to quadrant1DownUp(...) but updates
+	 * fourth quadrant from north to south
+	 */
 	private void quadrant4UpDown(Lawn lawn)
 		{
 		int i = x + 1;
@@ -404,7 +463,11 @@ public abstract class Sprinkler
 			++i;
 			}
 		}
-		
+
+	/*
+	 * Analogical to quadrant1DownUp(...) but updates
+	 * fourth quadrant from west to east
+	 */
 	private void quadrant4LeftRight(Lawn lawn)
 		{
 		int j = y + 1;
@@ -437,38 +500,69 @@ public abstract class Sprinkler
 			}
 		}	
 		
+	/*
+	 * Fills first quadrant of a circle
+	 * 
+	 * Lawn lawn - lawn to be watered
+	 */
 	protected void quadrant1(Lawn lawn)	
 		{
 		quadrant1DownUp(lawn);
 		quadrant1LeftRight(lawn);
 		}
-		
+
+	/*
+	 * Fills second quadrant of a circle
+	 *
+	 * Lawn lawn - lawn to be watered
+	 */
 	protected void quadrant2(Lawn lawn)
 		{
 		quadrant2RightLeft(lawn);
 		quadrant2DownUp(lawn);
 		}
-		
+
+	/*
+	 * Fills third quadrant of a circle
+	 *
+	 * Lawn lawn - lawn to be watered
+	 */
 	protected void quadrant3(Lawn lawn)
 		{
 		quadrant3RightLeft(lawn);
 		quadrant3UpDown(lawn);
 		}
-		
+
+	/*
+	 * Fills fourth quadrant of a circle
+	 *
+	 * Lawn lawn - lawn to be watered
+	 */
 	protected void quadrant4(Lawn lawn)
 		{
 		quadrant4LeftRight(lawn);
 		quadrant4UpDown(lawn);
 		}
 		
+	/*
+	 * Fills the middle of a circle
+	 * 
+	 * Lawn lawn - lawn to be watered
+	 */
 	protected void putFirstPixel(Lawn lawn)
 		{
 		lawn.waterPixel(x, y, 2*getEffParam());
 		}
 		
+	/* 
+	 * Sprinkler waters the lawn in accordance to its parameters
+	 * 
+	 * Lawn lawn - lawn to be watered
+	 */
 	public abstract void putSprinkler(Lawn lawn);
 	public abstract int getCode();
 	public abstract int getType();
+	//returns number of cycles
 	public abstract int getEffParam();
 	public abstract int getRadius();
 	}

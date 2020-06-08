@@ -1,9 +1,13 @@
 package Property;
 
+/*
+ * Sprinkler which type is 180
+ */
 public class Sprinkler180 extends Sprinkler
     {
     private final static int TYPE = 180;
     private final static int CODE = 1;
+    //number of cycles
     private final static int EFFPARAM = 3;
     
     public void putSprinkler(Lawn lawn)
