@@ -1,7 +1,11 @@
 package GUIExceptions;
 
+/*
+ * Thrown when given number in AnimationTimePanel is improper
+ */
 public class ImproperTimeException extends Exception
 	{
+	//subject improper number
 	private final int t;
 	
 	public ImproperTimeException(int t)
