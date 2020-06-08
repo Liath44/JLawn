@@ -3,8 +3,15 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
+/*
+ * Frame that pops up whenever exceptions are thrown
+ * Shows message from said exception
+ * 
+ * TODO: freeze rest of the GUI when present
+ */
 public class ErrorFrame extends JFrame
 	{
+	//message to be shown
 	private final String message;
 
 	public ErrorFrame(String message)

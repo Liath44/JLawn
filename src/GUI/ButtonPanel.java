@@ -3,6 +3,9 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 
+/*
+ * Panel used to store WaterButton, AnimationButton, FileButton and BitmapButton
+ */
 public class ButtonPanel extends JPanel
     {   
     public ButtonPanel(PrevStatusPanel psp)

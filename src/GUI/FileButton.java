@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+ * Button used to export sprinklers' file
+ */
 public class FileButton extends JButton implements ActionListener
 	{
 	private final PrevStatusPanel psp;

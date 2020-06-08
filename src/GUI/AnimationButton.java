@@ -5,6 +5,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+ * Clicking this button creates new window with animation
+ * showing watering the lawn
+ */
 public class AnimationButton extends JButton implements ActionListener
 	{
 	private final PrevStatusPanel psp;

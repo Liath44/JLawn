@@ -10,9 +10,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+ * Button used to commence watering the lawn
+ */
 public class WaterButton extends JButton implements ActionListener
 	{
 	private final PrevStatusPanel psp;
+	/*
+	 * if Lawn was once watered it shouldn't be watered again
+	 * unless new Lawn is imported or watering conditions change
+	 * (radius is changed, bounce parameter gets changed etc...)
+	 */
 	private static boolean operationdone = false;
 	
 	public WaterButton(PrevStatusPanel psp)
@@ -59,6 +67,7 @@ public class WaterButton extends JButton implements ActionListener
 			}
 		}
 		
+	//called when conditions change
 	public static void dewater()
 		{
 		WaterButton.operationdone = false;

@@ -9,6 +9,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+ * Button used to export bitmap representation of the lawn
+ */
 public class BitmapButton extends JButton implements ActionListener
 	{
 	private final PrevStatusPanel psp;
