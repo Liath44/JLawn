@@ -4,16 +4,30 @@ import AuxiliaryClasses.Colour;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/*
+ * Handles actual writing bitmap to file
+ */
 public class Picasso8
 	{
 	private FileOutputStream fos;
 	private final static int BPM = 8;
+	//size of single colour from palette in bytes
 	private final static int COLSIZE = 4;
+	//size of file header in bytes
 	private final static int FHSIZE = 14;
+	//size of bitmap info header in bytes
 	private final static int BIHSIZE = 40;
+	//bitmap signature
 	private final static byte[] SIGNATURE = {'B', 'M'};
+	//number of colours in palette
 	private final int nocolours;
 
+	/*
+	 * Writes colour into file
+	 * Called during palette creation
+	 * 
+	 * Colour colour - colour to be written
+	 */
 	public void writeColour(Colour colour) throws IOException
 		{
 		//No need for additional offset when JUMP == 100
@@ -23,6 +37,13 @@ public class Picasso8
 		fos.write((byte)0);
 		}
 	
+	/*
+	 * Writes FH and BIH into file	
+	 * 
+	 * String path - path to output file
+	 * 
+	 * Lawn lawn - stores lawn
+	 */
 	public void initializeBitmap(String path, Lawn lawn) throws IOException
 		{
 		fos = new FileOutputStream(path);
@@ -44,19 +65,34 @@ public class Picasso8
 		fos.write(intToDWord(0));
 		}
 
+	/*
+	 * Writes colour into file
+	 * Called during painting the actual bitmap
+	 * 
+	 * int colour - index of colour to be written
+	 */
 	public void paintBitmap(int colour) throws IOException
 		{
 		//IF JUMP = 100 PADDING NOT NEEDED
 		fos.write((byte)colour);
 		}
 		
+	/*
+	 * Closes FileOutputStream
+	 */
 	public void tidyUp() throws IOException
 		{
 		if(fos != null)
 			fos.close();
 		}
-		
-	//https://www.javaworld.com/article/2077561/java-tip-60--saving-bitmap-files-in-java.html
+	
+	/*
+	 * Represents subject value with 4 bytes
+	 * 
+	 * int value - value to be transformed
+	 * 
+	 * stolen from: https://www.javaworld.com/article/2077561/java-tip-60--saving-bitmap-files-in-java.html
+	 */
 	private byte[] intToDWord(int value)
 		{
 		byte[] outcome = new byte[4];
@@ -66,8 +102,13 @@ public class Picasso8
 		outcome[3] = (byte)((value >>  24) & 0x000000FF);
 		return outcome;
 		}
-		
-	//https://www.javaworld.com/article/2077561/java-tip-60--saving-bitmap-files-in-java.html	
+	/*
+	 * Represents subject value with 2 bytes
+	 *
+	 * int value - value to be transformed
+	 *
+	 * stolen from: https://www.javaworld.com/article/2077561/java-tip-60--saving-bitmap-files-in-java.html
+	 */
 	private byte[] intToWord(int value)
 		{
 		byte[] outcome = new byte[2];
