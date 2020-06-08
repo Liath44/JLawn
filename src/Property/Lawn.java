@@ -86,6 +86,10 @@ public class Lawn
 		waswatered = true;
 		}
 		
+	/*
+	 * Changes sign of each pixel to positive
+	 * Called after signing each pixel
+	 */
 	public void resetLawn()
 		{
 		for(int j = 0; j < getYSize(); j++)
@@ -98,6 +102,9 @@ public class Lawn
 			}
 		}
 		
+	/*
+	 * Finds highest watering value in lawn
+	 */
 	public int maxPixel()
 		{
 		int outcome = lawn[0][0];
@@ -112,6 +119,9 @@ public class Lawn
 		return outcome;
 		}
 		
+	/*
+	 * Used to set private int waterablepixels
+	 */
 	public void setWaterablePixels()
 		{
 		int outcome = 0;
@@ -126,6 +136,9 @@ public class Lawn
 		waterablepixels = outcome;
 		}
 		
+	/*
+	 * Calculates mean from lawn's waterable pixels
+	 */
 	public int meanPixel()
 		{
 		int sum = 0;
