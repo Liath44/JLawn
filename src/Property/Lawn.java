@@ -2,12 +2,23 @@ package Property;
 
 import java.util.ArrayList;
 
+/*
+ * Used to store and manage lawn
+ */
 public class Lawn
 	{
+	//matrix that stores lawn's pixels
 	private final int[][] lawn;
 	private ArrayList<Sprinkler> sprinklers;
+	//number of sprinkler360 cycles
 	private static int time = 1;
+	//number of pixels that can be watered
 	private int waterablepixels;
+	/*
+	 * sometimes lawn can be watered but will
+	 * need to be re-watered due to the change
+	 * in conditions
+	 */
 	private boolean waswatered = false;
 	
 	public int getPixel(int x, int y)
