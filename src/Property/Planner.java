@@ -4,8 +4,20 @@ import AuxiliaryClasses.Rectangle;
 import AuxiliaryClasses.Point;
 import java.util.ArrayList;
 
+/*
+ * Responsible for finding areas and rectangulization
+ */
 public class Planner
 	{
+	/*
+	 * Rectangulizes area
+	 * 
+	 * Lan lawn - stores lawn
+	 * 
+	 * Point area - marks area
+	 * 
+	 * returns list of Rectangles which area is consisted of
+	 */
 	public ArrayList<Rectangle> areaRectangulization(Lawn lawn, Point area)
 		{
 		ArrayList<Rectangle> rectangles = new ArrayList<>();
@@ -14,6 +26,13 @@ public class Planner
 		return rectangles;
 		}
 
+	/*
+	 * Finds areas in Lawn
+	 * 
+	 * Lawn lawn - stores lawn
+	 * 
+	 * returns list of Points - each Point marks one area
+	 */
 	public ArrayList<Point> findAreas(Lawn lawn)
 		{
 		int xsize = lawn.getXSize()/LawnReader.getJump();
@@ -23,6 +42,7 @@ public class Planner
 			{
 			for(int i = 0; i < xsize; i++)
 				{
+				//pixel not marked - new area
 				if(lawn.getPixelJump(i, j) == 1)
 					{
 					areas.add(new Point(i, j));
@@ -34,9 +54,19 @@ public class Planner
 		return areas;
 		}
 		
+	/*
+	 * Marks entire area (recursively)
+	 * 
+	 * Lawn lawn - stores lawn
+	 * 
+	 * int xsize, ysize - lawn's size
+	 * 
+	 * int x, y - current pixel (to be marked)
+	 */
 	private void signAreaJump(Lawn lawn, int xsize, int ysize, int x, int y)
 		{
 		lawn.markPixel(x * LawnReader.getJump(), y * LawnReader.getJump());
+		//check if neighbours should be marked
 		if(x + 1 < xsize && lawn.getPixelJump(x + 1, y) == 1)
 			signAreaJump(lawn, xsize, ysize, x + 1, y);
 		if(x - 1 >= 0 && lawn.getPixelJump(x - 1, y) == 1)
@@ -47,6 +77,9 @@ public class Planner
 			signAreaJump(lawn, xsize, ysize, x, y - 1);
 		}	
 		
+	/*
+	 * De-marks entire lawn
+	 */
 	private void resetSignsJump(Lawn lawn, int xsize, int ysize)
 		{
 		for(int j = 0; j < ysize; j++)
@@ -55,7 +88,17 @@ public class Planner
 				lawn.markPixel(i * LawnReader.getJump(), j * LawnReader.getJump());
 			}
 		}
-		
+	
+	/*
+	 * Checks if given point is inside one of rectangles
+	 * 
+	 * int x, y - coordinates of said point
+	 * 
+	 * List<Rectangle> rectangles - list of rectangles
+	 * 
+	 * returns false if point is inside at least one of rectangles
+	 * returns true otherwise
+	 */
 	private boolean isNotOnList(int x, int y, ArrayList<Rectangle> rectangles)
 		{
 		for(Rectangle rectangle: rectangles)
@@ -65,7 +108,11 @@ public class Planner
 			}
 		return true;
 		}
-		
+	
+	/*
+	 * Calculates considered rectangle length from
+	 * left to right.
+	 */
 	private int calcLenRight(Lawn lawn, int x, int y, int xsize)
 		{
 		int i = x + 1;
@@ -74,6 +121,10 @@ public class Planner
 		return i - x;
 		}	
 		
+	/*
+	 * Calculates considered rectangle length from
+	 * right to left.
+	 */
 	private int calcLenLeft(Lawn lawn, int x, int y)
 		{
 		int i = x - 1;
@@ -81,7 +132,14 @@ public class Planner
 			--i;
 		return x - i;
 		}
-		
+
+	/*
+	 * Checks whether considered row should still be
+	 * considered a part of subject rectangle or not
+	 *
+	 * Returns false if row is improper
+	 * Returns true otherwise
+	 */
 	private boolean rowIsProper(Lawn lawn, int x, int y, int len, int xsize, int ysize)
 		{
 		if(y == ysize || y == -1)
@@ -98,6 +156,25 @@ public class Planner
 		return (x + i >= xsize || lawn.getPixelJump(x + i, y) == 0);
 		}	
 		
+	/*
+	 * After examining subject rectangle check for
+	 * other rectangles that could be examined
+	 * from top to bottom (upDownRectangle(...))
+	 * 
+	 * Lawn lawn - stores lawn
+	 * 
+	 * int x - x coordinate of a right-down corner of
+	 * subject rectangle
+	 *
+	 * int j - y coordinate of a row in which to search
+	 * for new rectangles
+	 *
+	 * int xsize, ysize - Lawn's size
+	 *
+	 * int len - length of subject rectangle
+	 * 
+	 * List<Rectangle> rectangles - stores already found rectangles
+	 */
 	private void checkForUpDown(Lawn lawn, int x, int j, int xsize, int ysize, int len, ArrayList<Rectangle> rectangles)
 		{
 		int i = x + len - 1;
@@ -120,6 +197,10 @@ public class Planner
 			}
 		}	
 		
+	/*
+	 * Analogical to checkForDownUp but called
+	 * by downUpRectangle
+	 */
 	private void checkForUpDown2(Lawn lawn, int x1, int x2, int y, int xsize, int ysize, ArrayList<Rectangle> rectangles)
 		{
 		int i = x1 - 1;
@@ -169,7 +250,27 @@ public class Planner
 				}
 			}
 		}
-		
+	
+	/*
+	 * After examining subject rectangle check for
+	 * other rectangles that could be examined
+	 * from bottom to top (upDownRectangle(...))
+	 * 
+	 * Lawn lawn - stores lawn
+	 * 
+	 * int x1 - x coordinate of a left-down corner of
+	 * subject rectangle
+	 *
+	 * int x2 - x coordinate of a right-down corner of
+	 * subject rectangle
+	 *
+	 * int y - y coordinate a row above which new
+	 * rectangles should be searched for
+	 *
+	 * int xsize, ysize - Lawn's size
+	 * 
+	 * List<Rectangle> rectangles - stores already found rectangles
+	 */
 	private void checkForDownUp(Lawn lawn, int x1, int x2, int y, int xsize, int ysize, ArrayList<Rectangle> rectangles)
 		{
 		int i = x1 - 1;
@@ -218,7 +319,11 @@ public class Planner
 				}
 			}
 		}
-		
+	
+	/*
+	 * Analogical to checkForUpDown but called
+	 * by cownUpRectangle
+	 */
 	private void checkForDownUp2(Lawn lawn, int x, int j, int xsize, int ysize, int len, ArrayList<Rectangle> rectangles)
 		{
 		int i1 = x - len + 1;
@@ -241,6 +346,23 @@ public class Planner
 			}
 		}
 		
+	/*
+	 * Function finds a rectangle which:
+	 *  - is defined by two points one of which
+	 * is (x, y)
+	 *  - has the longest length possible
+	 *  - is enclosed by walls from left & right
+	 * The search is done from top-left corner to
+	 * down-right corner.
+	 * 
+	 * Lawn lawn - stores lawn
+	 * 
+	 * int x, y - coordinates of top-left corner
+	 *
+	 * int xsize, ysize - Lawn's size
+	 * 
+	 * List<Rectangle> rectangles - stores already found rectangles
+	 */
 	private void upDownRectangle(Lawn lawn, int x, int y, int xsize, int ysize, ArrayList<Rectangle> rectangles)
 		{
 		Rectangle rectangle = new Rectangle();
@@ -257,7 +379,12 @@ public class Planner
 			checkForDownUp(lawn, x, x + len - 1, i, xsize, ysize, rectangles);
 			}
 		}
-		
+	
+	/*
+	 * Analogical to UpDownRectangle but the
+	 * search is done from down-right corner
+	 * to up-left corner
+	 */
 	private void downUpRectangle(Lawn lawn, int x, int y, int xsize, int ysize, ArrayList<Rectangle> rectangles)
 		{
 		Rectangle rectangle = new Rectangle();
