@@ -1,0 +1,449 @@
+%%%%%%%%%%%%  Generated using docx2latex.com  %%%%%%%%%%%%%%
+
+%%%%%%%%%%%%  v2.0.0-beta  %%%%%%%%%%%%%%
+
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage[normalem]{ulem}
+\usepackage{soul}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{extarrows}
+\usepackage{graphicx}
+\usepackage[backend=biber,
+style=numeric,
+sorting=none,
+isbn=false,
+doi=false,
+url=false,
+]{biblatex}\addbibresource{bibliography.bib}
+
+\usepackage{subfig}
+\usepackage{wrapfig}
+\usepackage{wasysym}
+\usepackage{enumitem}
+\usepackage{adjustbox}
+\usepackage{ragged2e}
+\usepackage[svgnames,table]{xcolor}
+\usepackage{tikz}
+\usepackage{longtable}
+\usepackage{changepage}
+\usepackage{setspace}
+\usepackage{hhline}
+\usepackage{multicol}
+\usepackage{tabto}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{fancyhdr}
+\usepackage[toc,page]{appendix}
+\usepackage[hidelinks]{hyperref}
+\usetikzlibrary{shapes.symbols,shapes.geometric,shadows,arrows.meta}
+\tikzset{>={Latex[width=1.5mm,length=2mm]}}
+\usepackage{flowchart}\usepackage[paperheight=11.69in,paperwidth=8.27in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\TabPositions{0.49in,0.98in,1.47in,1.96in,2.45in,2.94in,3.43in,3.92in,4.41in,4.9in,5.39in,5.88in,}
+
+\urlstyle{same}
+
+\renewcommand{\_}{\kern-1.5pt\textunderscore\kern-1.5pt}
+
+ %%%%%%%%%%%%  Set Depths for Sections  %%%%%%%%%%%%%%
+
+% 1) Section
+% 1.1) SubSection
+% 1.1.1) SubSubSection
+% 1.1.1.1) Paragraph
+% 1.1.1.1.1) Subparagraph
+
+
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+
+
+ %%%%%%%%%%%%  Set Depths for Nested Lists created by \begin{enumerate}  %%%%%%%%%%%%%%
+
+
+\setlistdepth{9}
+\renewlist{enumerate}{enumerate}{9}
+		\setlist[enumerate,1]{label=\arabic*)}
+		\setlist[enumerate,2]{label=\alph*)}
+		\setlist[enumerate,3]{label=(\roman*)}
+		\setlist[enumerate,4]{label=(\arabic*)}
+		\setlist[enumerate,5]{label=(\Alph*)}
+		\setlist[enumerate,6]{label=(\Roman*)}
+		\setlist[enumerate,7]{label=\arabic*}
+		\setlist[enumerate,8]{label=\alph*}
+		\setlist[enumerate,9]{label=\roman*}
+
+\renewlist{itemize}{itemize}{9}
+		\setlist[itemize]{label=$\cdot$}
+		\setlist[itemize,1]{label=\textbullet}
+		\setlist[itemize,2]{label=$\circ$}
+		\setlist[itemize,3]{label=$\ast$}
+		\setlist[itemize,4]{label=$\dagger$}
+		\setlist[itemize,5]{label=$\triangleright$}
+		\setlist[itemize,6]{label=$\bigstar$}
+		\setlist[itemize,7]{label=$\blacklozenge$}
+		\setlist[itemize,8]{label=$\prime$}
+
+
+
+ %%%%%%%%%%%%  Header here  %%%%%%%%%%%%%%
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\cfoot{ 
+\vspace{\baselineskip}
+}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\topsep}{0pt}\setlength{\parskip}{8.04pt}
+\setlength{\parindent}{0pt}
+
+ %%%%%%%%%%%%  This sets linespacing (verticle gap between Lines) Default=1 %%%%%%%%%%%%%%
+
+
+\renewcommand{\arraystretch}{1.3}
+
+
+%%%%%%%%%%%%%%%%%%%% Document code starts here %%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{document}
+\begin{FlushRight}
+{\fontsize{14pt}{16.8pt}\selectfont 09.06.2020\\
+Warszawa\par}
+\end{FlushRight}\par
+
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+\begin{Center}
+{\fontsize{26pt}{31.2pt}\selectfont Specyfikacja funkcjonalna programu JLawn\par}
+\end{Center}\par
+
+
+\vspace{\baselineskip}
+\begin{Center}
+{\fontsize{14pt}{16.8pt}\selectfont https://github.com/Liath44/JLawn\par}\\
+{\fontsize{14pt}{16.8pt}\selectfont Maciej Dragun\\
+PW WE 298748\\
+\par}
+\end{Center}\par
+
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+\begin{enumerate}
+	\item \textbf{Pojęcia}\par
+
+W specyfikacji mogę posługiwać się pewnymi pojęciami/skrótami myślowymi. Poniżej podaję ich definicje wraz z angielskimi odpowiednikami, którymi posługiwałem się w komentarzach do kodu\par
+
+\textbf{Warunki (conditions)} – parametry używane podczas operacji podlewania trawnika np. promień podlewaczki lub kształt trawnika\par
+
+\textbf{Podlewalny pixel (waterable pixel)} – pixel, który nie jest ścianą\par
+
+\textbf{Obszar (area)} – maksymalny zbiór pixeli w którym z każdego pixela istnieje składająca się z podlewalnych pixeli ścieżka do każdego innego pixela (idea obszaru jest analogiczna do grafów spójnych)\par
+
+\textbf{Rektangulizacja (rectangulization)} – podział obszaru na maksymalnie szerokie prostokąty \par
+
+\textbf{Kompresja (compression) }– skalowanie współczynników podlania pixeli tak aby możliwa była reprezentacja graficzna trawnika za pomocą 106 odcieni zieleni i 106 odcieni czerwieni\par
+
+\textbf{Współczynnik kompresji (compression factor) }– wartość przez którą skalowane są współczynniki podlania pixeli w ramach kompresji\par
+
+\textbf{Reset (reset) }– w kontekście trawnika jest to przywrócenie go do stanu pierwotnego tj. przed podlaniem\par
+
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+	\item \textbf{Opis teoretyczny zagadnienia}\par
+
+Celem projektu było stworzenie programu równomiernie rozstawiającego podlewaczki po zadanym trawniku. Program powinien być napisany w Javie, posiadać graficzny interfejs użytkownika oraz umożliwiać eksport zarówno listy ustawionych podlewaczek do pliku jak i 8-bitowej bitmapy reprezentującej podlany trawnik.\par
+
+Trawnik powinien dawać się wczytać poprzez podanie ścieżki do pliku go reprezentującego oraz naciśnięcie przycisku potwierdzającego chęć jego importu. Program powinien reagować na błędny format pliku.\par
+
+Po naciśnięciu odpowiedniego przycisku trawnik powinien zostać równomiernie podlany za pomocą podlewaczek dostępnych w 4 wariantach:\par
+
+\begin{itemize}
+	\item \textbf{Podlewaczka 360} – podlewa N-krotnie obszar w postaci pełnego koła o promieniu R\par
+
+	\item \textbf{Podlewaczka 270} – podlewa 2$\ast$ N-krotnie obszar w postaci koła z wyciętą ćwiartką o promieniu 2$\ast$ R\par
+
+	\item \textbf{Podlewaczka 180 }– podlewa 3$\ast$ N-krotnie obszar w postaci półkola o promieniu 3$\ast$ R\par
+
+	\item \textbf{Podlewaczka 90} – podlewa 4$\ast$ N-krotnie obszar w postaci ćwiartki koła o promieniu 4$\ast$ R
+\end{itemize}\par
+
+W przypadku natrafienia na ścianę woda odbija się od niej lustrzanie\par
+
+Program powinien umożliwiać modyfikację niektórych ze swoich parametrów:\par
+
+\begin{itemize}
+	\item \textbf{Liczba cykli} podlewaczki360 N (domyślnie 1) \par
+
+	\item \textbf{Promień} podlewaczki360 R (domyślnie 50 pixeli)\par
+
+	\item \textbf{Obecność} lustrzanego odbicia w przypadku natrafienia wody na ścianę (domyślnie true)
+\end{itemize}\par
+
+Program nie umożliwia pokazania animacji podlewania trawnika\par
+
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+	\item \textbf{Kompilacja i uruchomienie programu}\par
+
+Program można skompilować wchodząc do folderu src i wpisując komendę:\par
+
+\begin{Center}
+\textit{javac Main.java}
+\end{Center}\par
+
+Kompilacja pozwala na jego uruchomienie za pomocą polecenia:\par
+
+\begin{Center}
+\textit{java Main}
+\end{Center}\par
+
+Uruchomienie programu wyświetla GUI udostępniające następujące funkcjonalności:\par
+
+\begin{itemize}
+	\item Zmiana liczby cykli poprzez wprowadzenie liczby i zatwierdzenie jej przyciskiem\par
+
+	\item Włączenie/wyłączenie odbicia lustrzanego wody poprzez naciśnięcie odpowiedniego przycisku\par
+
+	\item Zmiana promienia podlewaczki360 poprzez wprowadzenie liczby i zatwierdzenie jej przyciskiem\par
+
+	\item Import pliku reprezentującego niepodlany trawnik poprzez podanie ścieżki do pliku i zatwierdzenie jej przyciskiem\par
+
+	\item Podlanie aktualnie wczytanego trawnika poprzez naciśnięcie odpowiedniego przycisku\par
+
+	\item Export listy ustawionych podlewaczek do pliku SPRINKLERS poprzez naciśnięcie odpowiedniego przycisku\par
+
+	\item Export graficznej reprezentacji trawnika do pliku BITMAP poprzez naciśnięcie odpowiedniego przycisku\par
+
+	\item Powiadomienie użytkownika o statusie ostatniego polecenia
+\end{itemize}\par
+
+Program można zamknąć klikając czerwony przycisk w górnym prawym rogu\par
+
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+	\item \textbf{Działanie poszczególnych części programu}\par
+
+Importowany plik powinien mieć odpowiedni format – n wierszy złożonych ze znaków ‘$\ast$ ’ oraz ‘$\#$ ’. Wszystkie wiersze powinny mieć równe sobie ilości znaków i kończyć się znakami końca linii (enterem) z wyjątkiem ostatniego wiersza. n nie powinno przekraczać 80, z kolei liczba znaków w każdym wierszu nie powinna przekraczać 41. Zadany plik nie powinien być pusty. Program informuje o niepoprawnym formacie pliku.\par
+
+Plik odczytywany jest znak po znaku. Symbol ‘$\ast$ ’ jest równoważny kwadratowi 100 na 100 podlewalnych pixeli. Symbol ‘$\#$ ’ jest równoważny kwadratowi 100 na 100 pixeli ściany\par
+
+O ile jakikolwiek trawnik został zaimportowany, naciśnięcie przycisku „water$"$  spowoduje podział trawnika na obszary, rektangulizację każdego z nich oraz równomierne podlanie każdego z otrzymanych prostokątów w zależności od jego rozmiarów oraz promienia podlewaczki360\par
+
+Raz podlany trawnik można ponownie podlać wyłącznie przy zmianie warunków. W takim wypadku trawnik zostaje zresetowany.\par
+
+Naciśnięcie przycisku „to file$"$  generuje lub aktualizuje SPRINKLERS, którego zawartością jest lista podlewaczek użytych do podlania trawnika wraz z ich parametrami.\par
+
+Naciśnięcie przycisku „bitmap$"$  generuje lub aktualizuje 8-bitową bitmapę zapisaną w pliku BITMAP, która jest graficzną reprezentacją trawnika. Dokonywana jest kompresja (patrz sekcja 1. Pojęcia)\par
+
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+	\item \textbf{Potencjalne błędy}\par
+
+Polecenia kończące się niepowodzeniem powodują wyświetlenie się osobnego okienka z komunikatem o błędzie. Poniżej lista potencjalnych błędów i nazw wyjątków je generujących:\par
+
+\begin{itemize}
+	\item \textbf{EmptyFileException} – wyrzucany gdy odczytywany plik, mający reprezentować trawnik, jest pusty\par
+
+	\item \textbf{ImproperCharException} – wyrzucany gdy odczytywany plik, mający reprezentować trawnik, zawiera znaki nie będące ‘$\ast$ ’, ‘$\#$ ’ ani znakiem końca linii\par
+
+	\item \textbf{InconsistentCharAmountException} – wyrzucany gdy wiersze odczytywanego pliku, mającego reprezentować trawnik, posiadają nierówne ilości znaków\par
+
+	\item \textbf{TooManyColumnsException} – wyrzucany gdy liczba znaków w dowolnym wierszu pliku, mającym reprezentować trawnik, przekracza 40\par
+
+	\item \textbf{TooManyRowsException} - wyrzucany gdy liczba wierszy w pliku, mającym reprezentować trawnik, przekracza 80\par
+
+	\item \textbf{AlreadyWateredException} – wyrzucany gdy naciśnięty zostanie przycisk „water$"$  w przypadku podlanego trawnika dla którego nie nastąpiła zmiana warunków\par
+
+	\item \textbf{ImproperCycleNumberException} – wyrzucany gdy wprowadzona liczba cykli nie jest liczbą naturalną dodatnią\par
+
+	\item \textbf{ImproperRadiusException} - wyrzucany gdy wprowadzona wartość promienia podlewaczki360 nie jest liczbą naturalną dodatnią\par
+
+	\item \textbf{InitializeFirstException} – wyrzucany w momencie podlania trawnika/generacji pliku SPRINKLERS lub BITMAP jeżeli nie został zaimportowany żaden trawnik
+\end{itemize}\par
+
+Wymienione wyjątki zostały podzielone na dwa pakiety – FileExceptions (pierwsze 5) i GUIExceptions (ostatnie 4)\par
+
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+	\item \textbf{Opisy wykorzystanych klas}
+\end{enumerate}\par
+
+Klasy nie związane z błędami umieszczono w 3 pakietach. Poniżej ich opisy, zawartości i opisy ich zawartości:\par
+
+\begin{enumerate}
+	\item \textbf{Property }– pakiet w którym znajdują się wszystkie klasy konieczne do zarządzania trawnikiem\par
+
+\begin{itemize}
+	\item \textbf{Exporter} – klasa odpowiedzialna za export pliku SPRINKLERS oraz BITMAP\par
+
+	\item \textbf{Picasso8} – klasa odpowiedzialna za wspomaganie klasy Exporter przy tworzeniu bitmapy. Metody tej klasy są odpowiedzialne za pisanie właściwego pliku (Exporter jedynie wywołuje jej metody)\par
+
+	\item \textbf{Planner} – klasa odpowiedzialna za podział trawnika na obszary\par
+
+	\item \textbf{Gardener} – klasa odpowiedzialna za komunikację z Plannerem i przeprowadzenie operacji podlania trawnika\par
+
+	\item \textbf{Lawn} – klasa odpowiedzialna za przechowywanie trawnika oraz jego parametrów\par
+
+	\item \textbf{LawnReader} – klasa odpowiedzialna za import trawnika z pliku\par
+
+	\item \textbf{Sprinkler} – klasa abstrakcyjna opisująca pola i metody wspólne dla wszystkich podlewaczek\par
+
+	\item \textbf{Sprinkler90/180/270/360} – klasy odpowiedzialne za udostępnianie informacji o odpowiednich podlewaczkach i posiadające możliwość podlania trawnika
+\end{itemize}\par
+
+
+\vspace{\baselineskip}
+	\item \textbf{GUI} – pakiet w którym znajdują się wszystkie klasy odpowiedzialne za graficzny interfejs użytkownika\par
+
+\begin{itemize}
+	\item \textbf{WaterButton} – przycisk do podlania trawnika\par
+
+	\item \textbf{RadiusPanel} – panel umożliwiający modyfikację promienia podlewaczki360\par
+
+	\item \textbf{PrevStatusPanel} – panel wyświetlający status poprzedniego polecenia (\textcolor[HTML]{00B050}{OK }w przypadku sukcesu, \textcolor[HTML]{FF0000}{ERROR }w przeciwnym razie)\par
+
+	\item \textbf{MainFrame} – klasa odpowiedzialna za wyświetlanie całego GUI\par
+
+	\item \textbf{ImportPanel} – panel umożliwiający wprowadzenie i zaimportowanie pliku reprezentującego trawnik\par
+
+	\item \textbf{FileButton} – przycisk umożliwiający generację/aktualizację pliku SPRINKLERS\par
+
+	\item \textbf{ErrorFrame} – okienko, które wyświetli się podczas błędu programu\par
+
+	\item \textbf{CycleNumberPanel} – panel umożliwiający modyfikację liczbę cykli podlewaczki360\par
+
+	\item \textbf{BounePanel} – panel umożliwiający włączenie i wyłączenie odbicia lustrzanego wody\par
+
+	\item \textbf{BitmapButton} - przycisk umożliwiający generację/aktualizację bitmapy\par
+
+	\item \textbf{AnimationTimePanel} – panel, który miałby zastosowanie gdyby program posiadał funkcjonalność animacji procesu podlania trawnika\par
+
+	\item \textbf{AnimationButton} - przycisk, który miałby zastosowanie gdyby program posiadał funkcjonalność animacji procesu podlania trawnika\par
+
+	\item \textbf{ButtonPanel} – panel którego elementami są BitiamButton, AnimationButton, WaterButton, FileButton
+\end{itemize}\par
+
+
+\vspace{\baselineskip}
+	\item \textbf{AuxiliaryClasses} – pakiet klas wspomagających klasy z pakietu Property. Ich istnienie nie jest konieczne z punktu widzenia funkcjonalności programu, ale upraszcza strukturę kodu
+\end{enumerate}\par
+
+\begin{itemize}
+	\item \textbf{Colour} – klasa reprezentująca kolor według modelu RGB\par
+
+	\item \textbf{GardenersNote} – przechowuje informacje o najlepszej możliwej podlewaczce do podlania danego prostokąta\par
+
+	\item \textbf{Point} – klasa reprezentująca punkt. Każdy obszar jest charakteryzowany przez punkt\par
+
+	\item \textbf{Rectangle} – klasa reprezentująca prostokąt\\
+
+\end{itemize}\par
+
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\vspace{\baselineskip}
+
+\printbibliography
+\end{document}
